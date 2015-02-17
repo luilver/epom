@@ -13,11 +13,17 @@ module Epom
       response.sucess?
     end
 
-    def self.get_advertiser_permissions_for_user(hash = '', timestamp = '', username = '')
+    def self.get_advertiser_permissions_for_user(parameters = {})
       uri = '/advertiserShares.do'
-      parameters = {:hash => hash, :timestamp => timestamp, :username => username}
-      response = get(uri, :query => parameters)
-      response.sucess?
+      validation = validate_parameters(parameters)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
     end
 
     def self.get_campaigns_for_advertiser(advertiser_id, hash = '', timestamp = '', username = '')
@@ -58,6 +64,11 @@ module Epom
       }
       response = put(uri, :query => parameters)
       response.sucess?
+    end
+
+    def self.validate_parameters(options)
+      true
+      #hash = '', timestamp = '', username = ''
     end
 
   end
