@@ -192,6 +192,31 @@ module Epom
       end
     end
 
+    def self.update_click_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/clickCapping/update.do"
+      validation = validate_parameters(parameters, :update_click_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_frequency_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping/update.do"
+      validation = validate_parameters(parameters, :update_frequency_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
 
 
 
