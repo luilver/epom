@@ -114,6 +114,34 @@ module Epom
       end
     end
 
+    def self.remove_click_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/clickCapping.do"
+      validation = validate_parameters(parameters, :remove_click_capping)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.remove_frequency_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping.do"
+      validation = validate_parameters(parameters, :remove_frequency_capping)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+
+
 
 
   end
