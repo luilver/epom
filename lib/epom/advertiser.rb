@@ -13,5 +13,12 @@ module Epom
       response.sucess?
     end
 
+    def self.get_advertiser_permissions_for_user
+      uri = '/advertiserShares.do'
+      parameters = {:hash => 'md5hash', :timestamp => Time.now, :username => 'pepito_en_kewelta'}
+      response = get(uri, :query => parameters)
+      response.sucess?
+    end
+
   end
 end
