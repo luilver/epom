@@ -32,7 +32,7 @@ module Epom
     end
 
     def self.get_banners_for_campaign(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/delete.do"
+      uri = "/campaign/#{campaign_id}/banners.do"
       validation = validate_parameters(parameters, :banners_for_campaign)
 
       if validation[:correct]
@@ -43,5 +43,19 @@ module Epom
         raise ArgumentError, validation[:raison]
       end
     end
+
+    def self.update_campaign(campaign_id, parameters = {})
+      uri = " /rest-api/campaign/#{campaign_id}/update.do"
+      validation = validate_parameters(parameters, :update_campaign)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
   end
 end
