@@ -5,7 +5,7 @@ module Epom
     default_params :output => 'json'
     format :json
 
-    #TODO: advertiser_id parameter is need?
+    #TODO: Campaign_id parameter is need?
     def self.create_campaign(parameters = {})
       uri = '/rest-api/campaign/create.do'
       validation = validate_parameters(parameters, :create_campaign)
@@ -13,7 +13,7 @@ module Epom
       if validation[:correct]
         response = post(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -26,7 +26,7 @@ module Epom
       if validation[:correct]
         response = post(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -39,7 +39,7 @@ module Epom
       if validation[:correct]
         response = get(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -52,7 +52,7 @@ module Epom
       if validation[:correct]
         response = post(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -69,7 +69,7 @@ module Epom
       if validation[:correct]
         response = get(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -82,7 +82,7 @@ module Epom
       if validation[:correct]
         response = get(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -95,7 +95,7 @@ module Epom
       if validation[:correct]
         response = get(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -108,7 +108,7 @@ module Epom
       if validation[:correct]
         response = delete(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -121,7 +121,7 @@ module Epom
       if validation[:correct]
         response = delete(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
@@ -134,11 +134,68 @@ module Epom
       if validation[:correct]
         response = delete(uri, :query => parameters)
         response.success?
-        #if response.success? then return class of type Advertiser else raise Error
+        #if response.success? then return class of type Campaign else raise Error
       else
         raise ArgumentError, validation[:raison]
       end
     end
+
+    def self.set_action_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/actionCapping/set.do"
+      validation = validate_parameters(parameters, :set_action_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.set_click_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/clickCapping/set.do"
+      validation = validate_parameters(parameters, :set_click_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.set_frequency_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping/set.do"
+      validation = validate_parameters(parameters, :set_frequency_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_action_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/actionCapping/update.do"
+      validation = validate_parameters(parameters, :update_action_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+
+
+
+
 
 
 
