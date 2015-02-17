@@ -27,5 +27,38 @@ module Epom
       response.sucess?
     end
 
+    def self.update_advertiser(advertiser_id, name, contact_name, contact_email, description, category,  hash = '', timestamp = '', username = '')
+      uri = '/rest-api/advertisers/update.do'
+      parameters = {
+          :hash => hash,
+          :timestamp => timestamp,
+          :username => username,
+          :id => advertiser_id,
+          :name => name,
+          :contactName => contact_name,
+          :contactEmail => contact_email,
+          :description => description,
+          :categoryId => category
+      }
+      response = put(uri, :query => parameters)
+      response.sucess?
+    end
+
+    def self.create_advertiser(name, contact_name, contact_email, description, category,  hash = '', timestamp = '', username = '')
+      uri = '/rest-api/advertisers/update.do'
+      parameters = {
+          :hash => hash,
+          :timestamp => timestamp,
+          :username => username,
+          :name => name,
+          :contactName => contact_name,
+          :contactEmail => contact_email,
+          :description => description,
+          :categoryId => category
+      }
+      response = put(uri, :query => parameters)
+      response.sucess?
+    end
+
   end
 end
