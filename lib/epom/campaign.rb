@@ -5,6 +5,7 @@ module Epom
     default_params :output => 'json'
     format :json
 
+    #TODO: advertiser_id parameter is need?
     def self.create_campaign(parameters = {})
       uri = '/rest-api/campaign/create.do'
       validation = validate_parameters(parameters, :create_campaign)
@@ -36,7 +37,7 @@ module Epom
       validation = validate_parameters(parameters, :banners_for_campaign)
 
       if validation[:correct]
-        response = post(uri, :query => parameters)
+        response = get(uri, :query => parameters)
         response.success?
         #if response.success? then return class of type Advertiser else raise Error
       else
@@ -45,7 +46,7 @@ module Epom
     end
 
     def self.update_campaign(campaign_id, parameters = {})
-      uri = " /rest-api/campaign/#{campaign_id}/update.do"
+      uri = "/rest-api/campaign/#{campaign_id}/update.do"
       validation = validate_parameters(parameters, :update_campaign)
 
       if validation[:correct]
@@ -56,6 +57,64 @@ module Epom
         raise ArgumentError, validation[:raison]
       end
     end
+
+    ###########################
+    # Campaign Capping API
+    ###########################
+
+    def self.get_action_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/actionCapping.do"
+      validation = validate_parameters(parameters, :action_capping)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_click_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/clickCapping.do"
+      validation = validate_parameters(parameters, :click_capping)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_frequency_capping(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping.do"
+      validation = validate_parameters(parameters, :frequency_capping)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.remove_action_capping(campaign_id, parameters = {})
+      uri = "rest-api/campaign/#{campaign_id}/actionCapping.do"
+      validation = validate_parameters(parameters, :remove_action_capping)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Advertiser else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+
 
   end
 end
