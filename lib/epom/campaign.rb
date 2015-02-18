@@ -274,6 +274,19 @@ module Epom
       end
     end
 
+    def self.update_limits(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/limits/update.do"
+      validation = validate_parameters(parameters, :update_limits)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
 
 
 
