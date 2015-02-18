@@ -785,6 +785,48 @@ module Epom
       end
     end
 
+    ###########################
+    # Campaign Adjusted CPM API
+    ###########################
+
+    def self.add_fixed_cpm_country_pricing(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/adjustedCpm/value.do"
+      validation = validate_parameters(parameters, :add_fixed_cpm_country_pricing)
+
+      if validation[:correct]
+        response = put(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.adjusted_cpm_country_trigger(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/adjustedCpm/value.do"
+      validation = validate_parameters(parameters, :add_fixed_cpm_country_pricing)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.adjusted_cpm_list(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/adjustedCpm/values.do"
+      validation = validate_parameters(parameters, :adjusted_cpm_list)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
 
 
 
