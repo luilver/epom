@@ -218,6 +218,35 @@ module Epom
       end
     end
 
+    ###########################
+    # Campaign Limits API
+    ###########################
+
+    def self.disable_limits(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/limits.do"
+      validation = validate_parameters(parameters, :disable_limits)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_limits(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/limits.do"
+      validation = validate_parameters(parameters, :disable_limits)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
 
 
 
