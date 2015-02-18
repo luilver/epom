@@ -975,6 +975,32 @@ module Epom
       end
     end
 
+    def self.update_campaign_country_pricing_batch(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/pricing/batch.do"
+      validation = validate_parameters(parameters, :update_campaign_country_pricing_batch)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_campaign_pricing(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/pricing.do"
+      validation = validate_parameters(parameters, :update_campaign_pricing)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
 
 
     ############################################
