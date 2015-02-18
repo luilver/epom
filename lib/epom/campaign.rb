@@ -889,6 +889,19 @@ module Epom
       validation = validate_parameters(parameters, :update_action)
 
       if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.disable_campaign_country_pricing(campaign_id, country_code, parameters = {})
+      uri = "/rest-api/campaigns/#{campaign_id}/pricing/#{country_code}.do"
+      validation = validate_parameters(parameters, :disable_campaign_country_pricing)
+
+      if validation[:correct]
         response = delete(uri, :query => parameters)
         response.success?
         #if response.success? then return class of type Campaign else raise Error
@@ -897,7 +910,70 @@ module Epom
       end
     end
 
+    def self.disable_campaign_pricing(campaign_id, parameters = {})
+      uri = "/rest-api/campaigns/#{campaign_id}/pricing.do"
+      validation = validate_parameters(parameters, :disable_campaign_pricing)
 
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_campaign(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}.do"
+      validation = validate_parameters(parameters, :get_campaign)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_campaign_pricing(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/pricing.do"
+      validation = validate_parameters(parameters, :get_campaign_pricing)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_campaigns(parameters = {})
+      uri = '/rest-api/campaigns.do'
+      validation = validate_parameters(parameters, :get_campaigns)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_campaign_country_pricing(campaign_id, country_code, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/pricing/#{country_code}.do"
+      validation = validate_parameters(parameters, :update_campaign_country_pricing)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
 
 
 
