@@ -230,6 +230,45 @@ module Epom
       end
     end
 
+    def self.update_action_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/actionCapping/update.do"
+      validation = validate_parameters(parameters, :update_action_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_click_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/clickCapping/update.do"
+      validation = validate_parameters(parameters, :update_click_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_frequency_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/frequencyCapping/update.do"
+      validation = validate_parameters(parameters, :update_frequency_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
 
   end
 end
