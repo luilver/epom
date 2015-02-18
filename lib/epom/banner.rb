@@ -113,6 +113,122 @@ module Epom
     #Banner Capping API
     #######################
 
+    def self.get_action_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/actionCapping.do"
+      validation = validate_parameters(parameters, :get_action_capping)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_click_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/clickCapping.do"
+      validation = validate_parameters(parameters, :get_click_capping)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_frequency_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/frequencyCapping.do"
+      validation = validate_parameters(parameters, :get_frequency_capping)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.remove_action_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/actionCapping.do"
+      validation = validate_parameters(parameters, :remove_action_capping)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.remove_click_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/clickCapping.do"
+      validation = validate_parameters(parameters, :remove_click_capping)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.remove_frequency_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/frequencyCapping.do"
+      validation = validate_parameters(parameters, :remove_frequency_capping)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.set_action_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/actionCapping/set.do"
+      validation = validate_parameters(parameters, :set_action_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.set_click_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/clickCapping/set.do"
+      validation = validate_parameters(parameters, :set_click_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.set_frequency_capping(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/frequencyCapping/set.do"
+      validation = validate_parameters(parameters, :set_frequency_capping)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
 
 
   end
