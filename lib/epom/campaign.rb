@@ -237,10 +237,49 @@ module Epom
 
     def self.get_limits(campaign_id, parameters = {})
       uri = "/rest-api/campaign/#{campaign_id}/limits.do"
-      validation = validate_parameters(parameters, :disable_limits)
+      validation = validate_parameters(parameters, :get_limits)
 
       if validation[:correct]
         response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.reset_limits(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/limits/reset.do"
+      validation = validate_parameters(parameters, :reset_limits)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.set_limits(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/limits/set.do"
+      validation = validate_parameters(parameters, :set_limits)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Campaign else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_limits(campaign_id, parameters = {})
+      uri = "/rest-api/campaign/#{campaign_id}/limits/update.do"
+      validation = validate_parameters(parameters, :update_limits)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
         response.success?
         #if response.success? then return class of type Campaign else raise Error
       else
