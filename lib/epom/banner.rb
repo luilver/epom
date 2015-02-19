@@ -745,6 +745,110 @@ module Epom
       end
     end
 
+    def self.get_os_versions_by_os_name(banner_id, os_name, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/os/#{os_name}/versions.do"
+      validation = validate_parameters(parameters, :get_os_versions_by_os_name)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_region_cities(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/country/region/city/values.do"
+      validation = validate_parameters(parameters, :get_region_cities)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_safari_browsers(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/safari/values.do"
+      validation = validate_parameters(parameters, :get_safari_browsers)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_screen_resolution_values(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/resolution/values.do"
+      validation = validate_parameters(parameters, :get_screen_resolution_values)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_targeting(banner_id, target_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/#{target_id}.do"
+      validation = validate_parameters(parameters, :get_targeting)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_targetings(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targetings.do"
+      validation = validate_parameters(parameters, :get_targetings)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_targeting_types(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/types.do"
+      validation = validate_parameters(parameters, :get_targeting_types)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.remove_targeting(banner_id, target_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/#{target_id}/delete.do"
+      validation = validate_parameters(parameters, :remove_targeting)
+
+      if validation[:correct]
+        response = delete(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
 
   end
 end
