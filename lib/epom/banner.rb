@@ -459,6 +459,292 @@ module Epom
       end
     end
 
+    def self.create_domain_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/domain/create.do"
+      validation = validate_parameters(parameters, :create_domain_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_ip_range_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/iprange/create.do"
+      validation = validate_parameters(parameters, :create_ip_range_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_language_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/language/create.do"
+      validation = validate_parameters(parameters, :create_language_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_location_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/location/create.do"
+      validation = validate_parameters(parameters, :create_location_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_mobile_carrier_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/mobilecarrier/create.do"
+      validation = validate_parameters(parameters, :create_mobile_carrier_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_os_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/os/create.do"
+      validation = validate_parameters(parameters, :create_os_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_screen_resolution_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/resolution/create.do"
+      validation = validate_parameters(parameters, :create_screen_resolution_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_time_range_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/timerange/create.do"
+      validation = validate_parameters(parameters, :create_time_range_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.create_wifi_traffic_target(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/wifi/create.do"
+      validation = validate_parameters(parameters, :create_wifi_traffic_target)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.disable_targeting(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/disable.do"
+      validation = validate_parameters(parameters, :disable_targeting)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.enable_targeting(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/enable.do"
+      validation = validate_parameters(parameters, :enable_targeting)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_browsers(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/values.do"
+      validation = validate_parameters(parameters, :get_browsers)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_chrome_browsers(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/chrome/values.do"
+      validation = validate_parameters(parameters, :get_chrome_browsers)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_country_regions(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/country/region/values.do"
+      validation = validate_parameters(parameters, :get_country_regions)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_device_format_values(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/device/format/values.do"
+      validation = validate_parameters(parameters, :get_device_format_values)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_device_values(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/device/values.do"
+      validation = validate_parameters(parameters, :get_device_values)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_device_vendor_values(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/device/vendor/values.do"
+      validation = validate_parameters(parameters, :get_device_vendor_values)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_firefox_browsers(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/firefox/values.do"
+      validation = validate_parameters(parameters, :get_firefox_browsers)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_ie_browsers(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/ie/values.do"
+      validation = validate_parameters(parameters, :get_ie_browsers)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_languages(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/language/values.do"
+      validation = validate_parameters(parameters, :get_languages)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_mobile_carriers(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/mobilecarriers/values.do"
+      validation = validate_parameters(parameters, :get_mobile_carriers)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.get_os_values(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/targeting/os/values.do"
+      validation = validate_parameters(parameters, :get_os_values)
+
+      if validation[:correct]
+        response = get(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
 
   end
 end
