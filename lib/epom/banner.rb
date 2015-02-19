@@ -314,7 +314,20 @@ module Epom
 
     def self.set_limits(banner_id, parameters = {})
       uri = "/rest-api/banner/#{banner_id}/limits/set.do"
-      validation = validate_parameters(parameters, :reset_limits)
+      validation = validate_parameters(parameters, :set_limits)
+
+      if validation[:correct]
+        response = post(uri, :query => parameters)
+        response.success?
+        #if response.success? then return class of type Banner else raise Error
+      else
+        raise ArgumentError, validation[:raison]
+      end
+    end
+
+    def self.update_limits(banner_id, parameters = {})
+      uri = "/rest-api/banner/#{banner_id}/limits/update.do"
+      validation = validate_parameters(parameters, :update_limits)
 
       if validation[:correct]
         response = post(uri, :query => parameters)
