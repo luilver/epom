@@ -5,6 +5,58 @@ module Epom
     default_params :output => 'json'
     format :json
 
+
+		def extended_parameters
+			{
+				:create_banner => {
+					:url => "/rest-api/banner/create.do",
+					:parameters => [:param1, :param2, :param3, :param4],
+					:method => :post,
+				},
+				:get_frequency_capping => {
+					:url => "/rest-api/banner/BANNER_ID/frequencyCapping.do"
+					:parameters => [:param1, :param2, :param3, :param4],
+					:method => :get,
+				},
+			}
+		end
+
+		def generic_validation(params, actual_params)
+			for key in params.keys
+				next if actual_params.keys.include?(key)
+				return false
+			end
+			return true
+		end
+
+		def generic_method(method_name, params)
+		  hash = extended_parameters[method_name]
+			url = hash[:url]
+			actual_params = hash[:parameters]
+			url = url.gsub('BANNER_ID', params[:banner_id])
+			url = url.gsub('BANNER_TYPE', params[:banner_type])
+			valid = generic_validation(params, actual_params)
+			method = hash[:method]
+      if valid
+        response = send(method, url, :query => params) # revisar esto aqui
+        if response.success?
+					return response.body # revisar bien esto aqui tambien
+				else
+					# ver aqui que se hace
+				end
+      else
+        raise ArgumentError, validation[:raison]
+      end
+		end
+
+		def self.method_missing(name, *args)
+			if extended_method.keys.include?(name.to_sym)
+				generic_method(name, args)
+			else
+				super
+			end
+		end
+
     def self.create_banner(parameters = {})
       uri = '/rest-api/banner/create.do'
       validation = validate_parameters(parameters, :create_banner)
