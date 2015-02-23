@@ -117,78 +117,38 @@ module Epom
             :method => :post
         },
 
+        #######################
+        #Banner Limits API
+        #######################
+
+        :disable_limits => {
+            :url => '/rest-api/banner/BANNER_ID/limits.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :delete
+        },
+        :get_limits => {
+            :url => '/rest-api/banner/BANNER_ID/limits.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :reset_limits => {
+            :url => '/rest-api/banner/BANNER_ID/limits/reset.do',
+            :parameters => [:bannerId, :limitCounters, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :set_limits => {
+            :url => '/rest-api/banner/BANNER_ID/limits/set.do',
+            :parameters => [:bannerId, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :startDate, :endDate, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :update_limits => {
+            :url => '/rest-api/banner/BANNER_ID/limits/update.do',
+            :parameters => [:bannerId, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :startDate, :endDate, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :hash, :timestamp, :username ],
+            :method => :post
+        },
 			}
 		end
     #BANNER_ID
-
-    #######################
-    #Banner Limits API
-    #######################
-
-    def self.disable_limits(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/limits.do"
-      validation = validate_parameters(parameters, :disable_limits)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_limits(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/limits.do"
-      validation = validate_parameters(parameters, :get_limits)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.reset_limits(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/limits/reset.do"
-      validation = validate_parameters(parameters, :reset_limits)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.set_limits(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/limits/set.do"
-      validation = validate_parameters(parameters, :set_limits)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_limits(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/limits/update.do"
-      validation = validate_parameters(parameters, :update_limits)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
 
     #######################
     #Banner Targeting API
