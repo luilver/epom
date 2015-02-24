@@ -171,464 +171,196 @@ module Epom
             :parameters => [:bannerId, :countryCode, :rule, :hash, :timestamp, :username ],
             :method => :post
         },
+        :create_custom_parameter_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/custom/create.do',
+            :parameters => [:bannerId, :expression, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_day_of_week_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/dayofweek/create.do',
+            :parameters => [:bannerId, :dayOfWeek, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_device_format_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/deviceformat/create.do',
+            :parameters => [:bannerId, :deviceFormat, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_device_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/mobilecarrier/create.do',
+            :parameters => [:bannerId, :deviceFormat, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_device_vendor_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/devicevendor/create.do',
+            :parameters => [:bannerId, :deviceVendor, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_domain_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/domain/create.do',
+            :parameters => [:bannerId, :domain, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_ip_range_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/iprange/create.do',
+            :parameters => [:bannerId, :ipFrom, :ipTo, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_language_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/language/create.do',
+            :parameters => [:bannerId, :languageCode, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_location_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/location/create.do',
+            :parameters => [:bannerId, :countryCode, :regionName, :cityName, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_mobile_carrier_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/mobilecarrier/create.do',
+            :parameters => [:bannerId, :mobileCarriers, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_os_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/os/create.do',
+            :parameters => [:bannerId, :operatingSystem, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_screen_resolution_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/os/create.do',
+            :parameters => [:bannerId, :relation, :screenWidth, :screenHeight, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_time_range_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/timerange/create.do',
+            :parameters => [:bannerId, :timeFrom, :timeTo, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_wifi_traffic_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/wifi/create.do',
+            :parameters => [:bannerId, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+
+        :disable_targeting => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/disable.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :enable_targeting => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/enable.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :post
+        },
+
+        :get_browsers => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/browsers/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_chrome_browsers => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/browsers/chrome/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_firefox_browsers => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/browsers/firefox/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_ie_browsers => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/browsers/ie/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_safari_browsers => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/browsers/safari/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+
+        :get_country_regions => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/country/region/values.do',
+            :parameters => [:bannerId, :countryCode, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_device_format_values => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/device/format/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_device_values => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/device/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_device_vendor_values => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/device/vendor/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_languages => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/language/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_mobile_carriers => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/mobilecarriers/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_os_values => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/os/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_os_versions_by_os_name => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/os/OS_NAME/versions.do',
+            :parameters => [:bannerId, :osName, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_region_cities => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/country/region/city/values.do',
+            :parameters => [:bannerId, :countryCode, :regionName, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_screen_resolution_values => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/resolution/values.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_targeting => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/TARGET_ID.do',
+            :parameters => [:bannerId, :targetId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_targetings => {
+            :url => '/rest-api/banner/BANNER_ID/targetings.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_targeting_types => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/types.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+
+        :remove_targeting => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/TARGET_ID/delete.do',
+            :parameters => [:bannerId, :targetId, :hash, :timestamp, :username ],
+            :method => :delete
+        },
+
+        #############################
+        #Banner Placement Linking API
+        #############################
+
+
+
 			}
 		end
     #BANNER_ID
 
-    def self.create_custom_parameter_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/custom/create.do"
-      validation = validate_parameters(parameters, :create_custom_parameter_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_day_of_week_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/dayofweek/create.do"
-      validation = validate_parameters(parameters, :create_day_of_week_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_device_format_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/deviceformat/create.do"
-      validation = validate_parameters(parameters, :create_device_format_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_device_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/mobilecarrier/create.do"
-      validation = validate_parameters(parameters, :create_device_format_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_device_vendor_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/devicevendor/create.do"
-      validation = validate_parameters(parameters, :create_device_vendor_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_domain_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/domain/create.do"
-      validation = validate_parameters(parameters, :create_domain_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_ip_range_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/iprange/create.do"
-      validation = validate_parameters(parameters, :create_ip_range_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_language_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/language/create.do"
-      validation = validate_parameters(parameters, :create_language_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_location_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/location/create.do"
-      validation = validate_parameters(parameters, :create_location_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_mobile_carrier_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/mobilecarrier/create.do"
-      validation = validate_parameters(parameters, :create_mobile_carrier_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_os_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/os/create.do"
-      validation = validate_parameters(parameters, :create_os_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_screen_resolution_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/resolution/create.do"
-      validation = validate_parameters(parameters, :create_screen_resolution_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_time_range_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/timerange/create.do"
-      validation = validate_parameters(parameters, :create_time_range_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_wifi_traffic_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/wifi/create.do"
-      validation = validate_parameters(parameters, :create_wifi_traffic_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.disable_targeting(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/disable.do"
-      validation = validate_parameters(parameters, :disable_targeting)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.enable_targeting(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/enable.do"
-      validation = validate_parameters(parameters, :enable_targeting)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_browsers(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/values.do"
-      validation = validate_parameters(parameters, :get_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_chrome_browsers(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/chrome/values.do"
-      validation = validate_parameters(parameters, :get_chrome_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_country_regions(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/country/region/values.do"
-      validation = validate_parameters(parameters, :get_country_regions)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_device_format_values(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/device/format/values.do"
-      validation = validate_parameters(parameters, :get_device_format_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_device_values(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/device/values.do"
-      validation = validate_parameters(parameters, :get_device_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_device_vendor_values(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/device/vendor/values.do"
-      validation = validate_parameters(parameters, :get_device_vendor_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_firefox_browsers(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/firefox/values.do"
-      validation = validate_parameters(parameters, :get_firefox_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_ie_browsers(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/ie/values.do"
-      validation = validate_parameters(parameters, :get_ie_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_languages(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/language/values.do"
-      validation = validate_parameters(parameters, :get_languages)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_mobile_carriers(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/mobilecarriers/values.do"
-      validation = validate_parameters(parameters, :get_mobile_carriers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_os_values(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/os/values.do"
-      validation = validate_parameters(parameters, :get_os_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_os_versions_by_os_name(banner_id, os_name, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/os/#{os_name}/versions.do"
-      validation = validate_parameters(parameters, :get_os_versions_by_os_name)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_region_cities(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/country/region/city/values.do"
-      validation = validate_parameters(parameters, :get_region_cities)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_safari_browsers(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/browsers/safari/values.do"
-      validation = validate_parameters(parameters, :get_safari_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_screen_resolution_values(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/resolution/values.do"
-      validation = validate_parameters(parameters, :get_screen_resolution_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_targeting(banner_id, target_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/#{target_id}.do"
-      validation = validate_parameters(parameters, :get_targeting)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_targetings(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targetings.do"
-      validation = validate_parameters(parameters, :get_targetings)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_targeting_types(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/types.do"
-      validation = validate_parameters(parameters, :get_targeting_types)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.remove_targeting(banner_id, target_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/#{target_id}/delete.do"
-      validation = validate_parameters(parameters, :remove_targeting)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
 
     def generic_validation(params, actual_params)
       for key in params.keys
@@ -644,17 +376,19 @@ module Epom
       actual_params = hash[:parameters]
       url = url.gsub('BANNER_ID', params[:bannerId])
       url = url.gsub('BANNER_TYPE', params[:bannerType])
+      url = url.gsub('OS_NAME', params[:osName])
+      url = url.gsub('TARGET_ID', params[:targetId])
       valid = generic_validation(params, actual_params)
       method = hash[:method]
       if valid
         response = send(method, url, :query => params) # revisar esto aqui
         if response.success?
-          return response.body # revisar bien esto aqui tambien
+          return response # revisar bien esto aqui tambien
         else
           # ver aqui que se hace
         end
       else
-        raise ArgumentError, validation[:raison]
+        raise ArgumentError, 'Error'
       end
     end
 
