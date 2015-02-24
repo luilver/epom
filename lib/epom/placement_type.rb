@@ -1,0 +1,6 @@
+module Epom
+  class PlacementType
+    SITE_PLACEMENT = 'SITE_PLACEMENT'
+    MOBILE_SITE_PLACEMENT = 'MOBILE_SITE_PLACEMENT'
+  end
+end
