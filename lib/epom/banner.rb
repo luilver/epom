@@ -355,8 +355,87 @@ module Epom
         #Banner Placement Linking API
         #############################
 
+        :create_or_update_banner_placements => {
+            :url => '/rest-api/banners/BANNER_ID/placements.do',
+            :parameters => [:bannerId, :ids, :hash, :timestamp, :username ],
+            :method => :put
+        },
+        :delete_banner_placements => {
+            :url => '/rest-api/banners/BANNER_ID/placements.do',
+            :parameters => [:bannerId, :removeIds, :hash, :timestamp, :username ],
+            :method => :delete
+        },
+        :get_banner_placements_list => {
+            :url => '/rest-api/banners/BANNER_ID/placements.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :disable_banner_country_pricing => {
+            :url => '/rest-api/banner/BANNER_ID/pricing/COUNTRY_CODE.do',
+            :parameters => [:bannerId, :countryCode, :hash, :timestamp, :username ],
+            :method => :delete
+        },
+        :disable_banner_frequency_capping => {
+            :url => '/rest-api/banner/BANNER_ID/capping/frequency.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :delete
+        },
+        :disable_banner_pricing => {
+            :url => '/rest-api/banner/BANNER_ID/pricing.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :delete
+        },
 
-
+        :get_advertising_categories => {
+            :url => '/rest-api/categories/advertising.do',
+            :parameters => [:hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_banner => {
+            :url => '/rest-api/banner/BANNER_ID.do',
+            :parameters => [:bannerId, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_banners => {
+            :url => '/rest-api/banners.do',
+            :parameters => [:campaignId, :advertisingCategories, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_banners_urls => {
+            :url => '/rest-api/banners/urls.do',
+            :parameters => [:bannerIds, :advertisingCategories, :hash, :timestamp, :username ],
+            :method => :get
+        },
+        :get_publishing_categories => {
+            :url => '/rest-api/categories/publishing.do',
+            :parameters => [:hash, :timestamp, :username ],
+            :method => :get
+        },
+        :update_banner => {
+            :url => '/rest-api/banner/BANNER_ID/update.do',
+            :parameters => [:bannerId, :active, :allowNewPlacementsAutoLinking, :autolinkCategories, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :update_banner_country_pricing => {
+            :url => '/rest-api/banner/{BANNER_ID}/pricing/COUNTRY_CODE.do',
+            :parameters => [:bannerId, :active, :allowNewPlacementsAutoLinking, :autolinkCategories, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :update_banner_country_pricing_batch => {
+            :url => '/rest-api/banner/BANNER_ID/pricing/batch',
+            :parameters => [:bannerId, :countryPrices, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :update_banner_frequency_capping => {
+            :url => '/rest-api/banner/BANNER_ID/capping/frequency.do',
+            :parameters => [:bannerId, :amount, :periodType, :flat, :period, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :update_banner_pricing => {
+            :url => '/rest-api/banner/BANNER_ID/pricing.do',
+            :parameters => [:bannerId, :price, :paymentModel, :hash, :timestamp, :username ],
+            :method => :post
+        }
 			}
 		end
     #BANNER_ID
@@ -378,6 +457,7 @@ module Epom
       url = url.gsub('BANNER_TYPE', params[:bannerType])
       url = url.gsub('OS_NAME', params[:osName])
       url = url.gsub('TARGET_ID', params[:targetId])
+      url = url.gsub('COUNTRY_CODE', params[:countryCode])
       valid = generic_validation(params, actual_params)
       method = hash[:method]
       if valid
