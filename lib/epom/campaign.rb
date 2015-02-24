@@ -27,169 +27,79 @@ module Epom
               :parameters => [:campaignId, :name, :advertiserId, :description, :active, :ctrOptimization, :weight, :allowNewPlacementsAutolinking, :autolinkCategories, :hash, :timestamp, :username ],
               :method => :post
           },
+
+          ###########################
+          # Campaign Capping API
+          ###########################
+
+          :get_action_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/actionCapping.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_click_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/clickCapping.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_frequency_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/frequencyCapping.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+
+          :remove_action_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/actionCapping.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :remove_click_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/clickCapping.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :remove_frequency_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/frequencyCapping.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+
+          :set_action_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/actionCapping/set.do',
+              :parameters => [:campaignId, :amount, :period, :periodType, :evenDistribution, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :set_click_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/clickCapping/set.do',
+              :parameters => [:campaignId, :amount, :period, :periodType, :evenDistribution, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :set_frequency_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/frequencyCapping/set.do',
+              :parameters => [:campaignId, :amount, :period, :periodType, :evenDistribution, :hash, :timestamp, :username ],
+              :method => :post
+          },
+
+          :update_action_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/frequencyCapping/update.do',
+              :parameters => [:campaignId, :amount, :period, :periodType, :evenDistribution, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :update_click_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/clickCapping/update.do',
+              :parameters => [:campaignId, :amount, :period, :periodType, :evenDistribution, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :update_frequency_capping => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/frequencyCapping/update.do',
+              :parameters => [:campaignId, :amount, :period, :periodType, :evenDistribution, :hash, :timestamp, :username ],
+              :method => :post
+          },
+
+
       }
     end
     #CAMPAIGN_ID
-
-    ###########################
-    # Campaign Capping API
-    ###########################
-
-    def self.get_action_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/actionCapping.do"
-      validation = validate_parameters(parameters, :action_capping)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_click_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/clickCapping.do"
-      validation = validate_parameters(parameters, :click_capping)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_frequency_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping.do"
-      validation = validate_parameters(parameters, :frequency_capping)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.remove_action_capping(campaign_id, parameters = {})
-      uri = "rest-api/campaign/#{campaign_id}/actionCapping.do"
-      validation = validate_parameters(parameters, :remove_action_capping)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.remove_click_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/clickCapping.do"
-      validation = validate_parameters(parameters, :remove_click_capping)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.remove_frequency_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping.do"
-      validation = validate_parameters(parameters, :remove_frequency_capping)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.set_action_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/actionCapping/set.do"
-      validation = validate_parameters(parameters, :set_action_capping)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.set_click_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/clickCapping/set.do"
-      validation = validate_parameters(parameters, :set_click_capping)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.set_frequency_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping/set.do"
-      validation = validate_parameters(parameters, :set_frequency_capping)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_action_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/actionCapping/update.do"
-      validation = validate_parameters(parameters, :update_action_capping)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_click_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/clickCapping/update.do"
-      validation = validate_parameters(parameters, :update_click_capping)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_frequency_capping(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/frequencyCapping/update.do"
-      validation = validate_parameters(parameters, :update_frequency_capping)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
 
     ###########################
     # Campaign Limits API
