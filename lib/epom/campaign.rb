@@ -96,83 +96,50 @@ module Epom
               :method => :post
           },
 
+          ###########################
+          # Campaign Limits API
+          ###########################
 
+          :disable_limits => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/limits.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :get_limits => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/limits.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :reset_limits => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/limits/reset.do',
+              :parameters => [:campaignId, :limitCounters, :limitCounters, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :set_limits => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/limits/set.do',
+              :parameters => [:campaignId, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :startDate, :endDate, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :update_limits => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/limits/update.do',
+              :parameters => [:campaignId, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :startDate, :endDate, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :hash, :timestamp, :username ],
+              :method => :post
+          },
+
+
+          ###########################
+          # Campaign Targeting API
+          ###########################
+
+          :create_browser_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/browser/create.do',
+              :parameters => [:campaignId, :browser, :relation, :browserVersion, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
       }
     end
     #CAMPAIGN_ID
 
-    ###########################
-    # Campaign Limits API
-    ###########################
-
-    def self.disable_limits(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/limits.do"
-      validation = validate_parameters(parameters, :disable_limits)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_limits(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/limits.do"
-      validation = validate_parameters(parameters, :get_limits)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.reset_limits(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/limits/reset.do"
-      validation = validate_parameters(parameters, :reset_limits)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.set_limits(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/limits/set.do"
-      validation = validate_parameters(parameters, :set_limits)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_limits(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/limits/update.do"
-      validation = validate_parameters(parameters, :update_limits)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    ###########################
-    # Campaign Limits API
-    ###########################
 
     def self.create_browser_target(campaign_id, parameters = {})
       uri = "/rest-api/campaign/#{campaign_id}/targeting/browser/create.do"
