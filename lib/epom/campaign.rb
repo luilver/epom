@@ -5,58 +5,31 @@ module Epom
     default_params :output => 'json'
     format :json
 
-    #TODO: Campaign_id parameter is need?
-    def self.create_campaign(parameters = {})
-      uri = '/rest-api/campaign/create.do'
-      validation = validate_parameters(parameters, :create_campaign)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
+    def self.extended_parameters
+      {
+          :create_campaign => {
+              :url => '/rest-api/campaign/create.do',
+              :parameters => [:name, :advertiserId, :description, :active, :ctrOptimization, :weight, :allowNewPlacementsAutolinking, :autolinkCategories, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :delete_campaign => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/delete.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :get_banners_for_campaign => {
+              :url => '/campaign/CAMPAIGN_ID/banners.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :update_campaign => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/update.do',
+              :parameters => [:campaignId, :name, :advertiserId, :description, :active, :ctrOptimization, :weight, :allowNewPlacementsAutolinking, :autolinkCategories, :hash, :timestamp, :username ],
+              :method => :post
+          },
+      }
     end
-
-    def self.delete_campaign(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/delete.do"
-      validation = validate_parameters(parameters, :delete_campaign)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_banners_for_campaign(campaign_id, parameters = {})
-      uri = "/campaign/#{campaign_id}/banners.do"
-      validation = validate_parameters(parameters, :banners_for_campaign)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_campaign(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/update.do"
-      validation = validate_parameters(parameters, :update_campaign)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
+    #CAMPAIGN_ID
 
     ###########################
     # Campaign Capping API
@@ -1001,22 +974,42 @@ module Epom
       end
     end
 
+    def generic_validation(params, actual_params)
+      for key in params.keys
+        next if actual_params.keys.include?(key)
+        return false
+      end
+      true
+    end
 
-
-    ############################################
-
-    # Validation method
-    def self.validate_parameters(options, method)
-      case method
-        when :delete_advertiser
-        when :advertiser_permissions
-        when :campaigns_for_advertiser
-        when :update_advertiser
-        when :create_advertiser
-          #validate in each case and return if valid
-          true
+    def generic_method(method_name, params)
+      hash = extended_parameters[method_name]
+      url = hash[:url]
+      actual_params = hash[:parameters]
+      url = url.gsub('BANNER_ID', params[:bannerId])
+      url = url.gsub('BANNER_TYPE', params[:bannerType])
+      url = url.gsub('OS_NAME', params[:osName])
+      url = url.gsub('TARGET_ID', params[:targetId])
+      url = url.gsub('COUNTRY_CODE', params[:countryCode])
+      valid = generic_validation(params, actual_params)
+      method = hash[:method]
+      if valid
+        response = send(method, url, :query => params) # revisar esto aqui
+        if response.success?
+          return response # revisar bien esto aqui tambien
         else
-          false
+          # ver aqui que se hace
+        end
+      else
+        raise ArgumentError, 'Error'
+      end
+    end
+
+    def self.method_missing(name, *args)
+      if self.extended_parameters.keys.include?(name.to_sym)
+        generic_method(name, args)
+      else
+        super
       end
     end
 
