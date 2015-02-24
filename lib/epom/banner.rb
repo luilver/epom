@@ -146,65 +146,34 @@ module Epom
             :parameters => [:bannerId, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :startDate, :endDate, :totalImpressionsLimit, :totalClicksLimit, :totalBudgetLimit, :dailyImpressionsLimit, :dailyClicksLimit, :dailyBudgetLimit, :totalImpressions, :totalClicks, :totalBudget, :dailyImpressions, :dailyClicks, :dailyBudget, :hash, :timestamp, :username ],
             :method => :post
         },
+
+        #######################
+        #Banner Targeting API
+        #######################
+
+        :create_browser_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/create.do',
+            :parameters => [:bannerId, :rule, :browser, :relation, :browserVersion, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_channel_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/channel/create.do',
+            :parameters => [:bannerId, :channel, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_cookie_value_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/cookie/create.do',
+            :parameters => [:bannerId, :cookieName, :cookieValue, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
+        :create_country_target => {
+            :url => '/rest-api/banner/BANNER_ID/targeting/country/create.do',
+            :parameters => [:bannerId, :countryCode, :rule, :hash, :timestamp, :username ],
+            :method => :post
+        },
 			}
 		end
     #BANNER_ID
-
-    #######################
-    #Banner Targeting API
-    #######################
-
-    def self.create_browser_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/create.do"
-      validation = validate_parameters(parameters, :create_browser_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_channel_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/channel/create.do"
-      validation = validate_parameters(parameters, :create_channel_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_cookie_value_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/cookie/create.do"
-      validation = validate_parameters(parameters, :create_cookie_value_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_country_target(banner_id, parameters = {})
-      uri = "/rest-api/banner/#{banner_id}/targeting/country/create.do"
-      validation = validate_parameters(parameters, :create_country_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Banner else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
 
     def self.create_custom_parameter_target(banner_id, parameters = {})
       uri = "/rest-api/banner/#{banner_id}/targeting/custom/create.do"
