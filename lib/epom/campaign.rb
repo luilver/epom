@@ -348,181 +348,79 @@ module Epom
               :parameters => [:campaignId, :hash, :timestamp, :username ],
               :method => :get
           },
+
+
+          ###########################
+          # Campaign Action Management API
+          ###########################
+
+          :create_action => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/action/create.do',
+              :parameters => [:campaignId, :name, :clickToConversionTimeFrame, :clickToConversionTimeFramePeriodType, :viewToConversionTimeFrame, :viewToConversionTimeFramePeriodType, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :get_action => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/action/ACTION_KEY.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_actions => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/actions.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :remove_action => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/action/ACTION_KEY/delete.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :update_action => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/action/ACTION_KEY/update.do',
+              :parameters => [:campaignId, :name, :clickToConversionTimeFrame, :clickToConversionTimeFramePeriodType, :viewToConversionTimeFrame, :viewToConversionTimeFramePeriodType, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :disable_campaign_country_pricing => {
+              :url => '/rest-api/campaigns/CAMPAIGN_ID/pricing/COUNTRY_CODE.do',
+              :parameters => [:campaignId, :countryCode, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :disable_campaign_pricing => {
+              :url => '/rest-api/campaigns/CAMPAIGN_ID/pricing.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+
+          :get_campaign => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_campaign_pricing => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/pricing.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_campaigns => {
+              :url => '/rest-api/campaigns.do',
+              :parameters => [:hash, :timestamp, :username ],
+              :method => :get
+          },
+          :update_campaign_country_pricing => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/pricing/COUNTRY_CODE.do',
+              :parameters => [:campaignId, :countryCode, :price, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :update_campaign_country_pricing_batch => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/pricing/batch.do',
+              :parameters => [:campaignId, :countryPrices, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :update_campaign_pricing => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/pricing.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :post
+          },
       }
-    end
-    #CAMPAIGN_ID  OS_NAME TARGET_ID
-
-    ###########################
-    # Campaign Action Management API
-    ###########################
-
-    def self.create_action(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/action/create.do"
-      validation = validate_parameters(parameters, :create_action)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_action(campaign_id, action_key, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/action/#{action_key}.do"
-      validation = validate_parameters(parameters, :get_action)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_actions(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/actions.do"
-      validation = validate_parameters(parameters, :get_actions)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.remove_action(campaign_id, action_key, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/action/#{action_key}/delete.do"
-      validation = validate_parameters(parameters, :remove_action)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_action(campaign_id, action_key, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/action/#{action_key}/update.do"
-      validation = validate_parameters(parameters, :update_action)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.disable_campaign_country_pricing(campaign_id, country_code, parameters = {})
-      uri = "/rest-api/campaigns/#{campaign_id}/pricing/#{country_code}.do"
-      validation = validate_parameters(parameters, :disable_campaign_country_pricing)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.disable_campaign_pricing(campaign_id, parameters = {})
-      uri = "/rest-api/campaigns/#{campaign_id}/pricing.do"
-      validation = validate_parameters(parameters, :disable_campaign_pricing)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_campaign(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}.do"
-      validation = validate_parameters(parameters, :get_campaign)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_campaign_pricing(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/pricing.do"
-      validation = validate_parameters(parameters, :get_campaign_pricing)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_campaigns(parameters = {})
-      uri = '/rest-api/campaigns.do'
-      validation = validate_parameters(parameters, :get_campaigns)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_campaign_country_pricing(campaign_id, country_code, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/pricing/#{country_code}.do"
-      validation = validate_parameters(parameters, :update_campaign_country_pricing)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_campaign_country_pricing_batch(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/pricing/batch.do"
-      validation = validate_parameters(parameters, :update_campaign_country_pricing_batch)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_campaign_pricing(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/pricing.do"
-      validation = validate_parameters(parameters, :update_campaign_pricing)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
     end
 
     def generic_validation(params, actual_params)
@@ -540,6 +438,7 @@ module Epom
       url = url.gsub('CAMPAIGN_ID', params[:campaignId])
       url = url.gsub('OS_NAME', params[:osName])
       url = url.gsub('TARGET_ID', params[:targetId])
+      url = url.gsub('ACTION_KEY', params[:actionKey])
       url = url.gsub('COUNTRY_CODE', params[:countryCode])
       valid = generic_validation(params, actual_params)
       method = hash[:method]
