@@ -326,54 +326,31 @@ module Epom
           :remove_targeting => {
               :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/TARGET_ID/delete.do',
               :parameters => [:campaignId, :targetId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+
+          ###########################
+          # Campaign Adjusted CPM API
+          ###########################
+
+          :add_fixed_cpm_country_pricing => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm/value.do',
+              :parameters => [:campaignId, :value, :countryCode, :date, :hash, :timestamp, :username ],
+              :method => :put
+          },
+          :adjusted_cpm_country_trigger => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm/value.do',
+              :parameters => [:campaignId, :enable, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :adjusted_cpm_list => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/adjustedCpm/value.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
               :method => :get
           },
       }
     end
     #CAMPAIGN_ID  OS_NAME TARGET_ID
-
-    ###########################
-    # Campaign Adjusted CPM API
-    ###########################
-
-    def self.add_fixed_cpm_country_pricing(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/adjustedCpm/value.do"
-      validation = validate_parameters(parameters, :add_fixed_cpm_country_pricing)
-
-      if validation[:correct]
-        response = put(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.adjusted_cpm_country_trigger(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/adjustedCpm/value.do"
-      validation = validate_parameters(parameters, :add_fixed_cpm_country_pricing)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.adjusted_cpm_list(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/adjustedCpm/values.do"
-      validation = validate_parameters(parameters, :adjusted_cpm_list)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
 
     ###########################
     # Campaign Action Management API
