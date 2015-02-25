@@ -5,84 +5,70 @@ module Epom
     default_params :output => 'json'
     format :json
 
-    def self.delete_advertiser(advertiser_id, parameters = {})
-      uri = "/rest-api/advertisers/#{advertiser_id}/delete.do"
-      validation = validate_parameters(parameters, :delete_advertiser)
+    def self.extended_parameters
+      {
+          :delete_advertiser => {
+              :url => '/rest-api/advertisers/ADVERTISER_ID/delete.do',
+              :parameters => [:advertiserId, :hash, :timestamp, :username ],
+              :method => :delete
+          },
+          :get_advertiser_permissions_for_user => {
+              :url => '/advertiserShares.do',
+              :parameters => [:hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_campaigns_for_advertiser => {
+              :url => '/advertiser/ADVERTISER_ID/campaigns.do',
+              :parameters => [:advertiserId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :update_advertiser => {
+              :url => '/rest-api/advertisers/update.do',
+              :parameters => [:id, :name, :contactName, :contactEmail, :description, :categoryId, :hash, :timestamp, :username ],
+              :method => :put
+          },
+          :create_advertiser => {
+              :url => '/rest-api/advertisers/update.do',
+              :parameters => [:name, :contactName, :contactEmail, :description, :categoryId, :hash, :timestamp, :username ],
+              :method => :put
+          },
 
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Advertiser else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
+      }
     end
 
-    def self.get_advertiser_permissions_for_user(parameters = {})
-      uri = '/advertiserShares.do'
-      validation = validate_parameters(parameters, :advertiser_permissions)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Advertiser else raise Error
-      else
-        raise ArgumentError, validation[:raison]
+    def generic_validation(params, actual_params)
+      for key in params.keys
+        next if actual_params.keys.include?(key)
+        return false
       end
+      true
     end
 
-    def self.get_campaigns_for_advertiser(advertiser_id, parameters = {})
-      uri = "/advertiser/#{advertiser_id}/campaigns.do"
-      validation = validate_parameters(parameters, :campaigns_for_advertiser)
+    def generic_method(method_name, params)
+      hash = extended_parameters[method_name]
+      url = hash[:url]
+      actual_params = hash[:parameters]
+      url = url.gsub('ADVERTISER_ID', params[:advertiserId])
 
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Advertiser else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.update_advertiser(advertiser_id, parameters = {})
-      uri = '/rest-api/advertisers/update.do'
-
-      parameters[:id] = advertiser_id
-      validation = validate_parameters(parameters, :update_advertiser)
-
-      if validation[:correct]
-        response = put(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Advertiser else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_advertiser(parameters = {})
-      uri = '/rest-api/advertisers/update.do'
-      validation = validate_parameters(parameters, :create_advertiser)
-
-      if validation[:correct]
-        response = put(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Advertiser else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.validate_parameters(options, method)
-      case method
-        when :delete_advertiser
-        when :advertiser_permissions
-        when :campaigns_for_advertiser
-        when :update_advertiser
-        when :create_advertiser
-          #validate in each case and return if valid
-          true
+      valid = generic_validation(params, actual_params)
+      method = hash[:method]
+      if valid
+        response = send(method, url, :query => params) # revisar esto aqui
+        if response.success?
+          return response # revisar bien esto aqui tambien
         else
-          false
+          # ver aqui que se hace
+        end
+      else
+        raise ArgumentError, 'Error'
+      end
+    end
+
+    def self.method_missing(name, *args)
+      if self.extended_parameters.keys.include?(name.to_sym)
+        generic_method(name, args)
+      else
+        super
       end
     end
 

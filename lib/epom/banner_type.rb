@@ -1,14 +1,4 @@
 module Epom
-  def self.create_hash(password)
-    #TODO: Calculate hash like documentation
-    return 'HASH_FOR_EPOM'
-  end
-
-  class PlacementType
-    SITE_PLACEMENT = 'SITE_PLACEMENT'
-    MOBILE_SITE_PLACEMENT = 'MOBILE_SITE_PLACEMENT'
-  end
-
   class BannerType
     LOCAL_FILE = 'LOCAL_FILE'
     EXTERNAL_FILE = 'EXTERNAL_FILE'
@@ -22,5 +12,4 @@ module Epom
     TEMPLATE = 'TEMPLATE'
     OPENRTB_DSP = 'OPENRTB_DSP'
   end
-
 end
