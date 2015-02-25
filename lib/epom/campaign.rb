@@ -231,243 +231,106 @@ module Epom
               :parameters => [:campaignId, :hash, :timestamp, :username ],
               :method => :post
           },
+
+          :get_browsers => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/browsers/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_chrome_browsers => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/browsers/chrome/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_firefox_browsers => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/browsers/firefox/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_ie_browsers => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/browsers/ie/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_safari_browsers => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/browsers/safari/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+
+          :get_country_regions => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/country/region/values.do',
+              :parameters => [:campaignId, :countryCode, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_device_format_values => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/device/format/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_device_values => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/device/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_device_vendor_values => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/device/vendor/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_languages => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/language/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_mobile_carriers => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/mobilecarriers/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_os_values => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/os/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_os_versions_by_os_name => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/os/OS_NAME/versions.do',
+              :parameters => [:campaignId, :osName, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_regions_cities => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/country/region/city/values.do',
+              :parameters => [:campaignId, :countryCode, :regionName, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_screen_resolution_values => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/resolution/values.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_targeting => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/TARGET_ID.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_targetings => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targetings.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :get_targeting_types => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/types.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :get
+          },
+          :remove_targeting => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/TARGET_ID/delete.do',
+              :parameters => [:campaignId, :targetId, :hash, :timestamp, :username ],
+              :method => :get
+          },
       }
     end
-    #CAMPAIGN_ID
-
-    def self.get_browsers(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/browsers/values.do"
-      validation = validate_parameters(parameters, :get_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_chrome_browsers(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/browsers/chrome/values.do"
-      validation = validate_parameters(parameters, :get_chrome_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_country_regions(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/country/region/values.do"
-      validation = validate_parameters(parameters, :get_country_regions)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_device_format_values(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/device/format/values.do"
-      validation = validate_parameters(parameters, :get_device_format_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_device_values(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/device/values.do"
-      validation = validate_parameters(parameters, :get_device_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_device_vendor_values(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/device/vendor/values.do"
-      validation = validate_parameters(parameters, :get_device_vendor_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_firefox_browsers(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/browsers/firefox/values.do"
-      validation = validate_parameters(parameters, :get_firefox_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_languages(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/language/values.do"
-      validation = validate_parameters(parameters, :get_languages)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_mobile_carriers(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/mobilecarriers/values.do"
-      validation = validate_parameters(parameters, :get_mobile_carriers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_os_values(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/os/values.do"
-      validation = validate_parameters(parameters, :get_os_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_os_versions_by_os_name(campaign_id, os_name, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/os/#{os_name}/versions.do"
-      validation = validate_parameters(parameters, :get_os_versions_by_os_name)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_regions_cities(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/country/region/city/values.do"
-      validation = validate_parameters(parameters, :get_regions_cities)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_safari_browsers(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/browsers/safari/values.d"
-      validation = validate_parameters(parameters, :get_safari_browsers)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_screen_resolution_values(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/resolution/values.do"
-      validation = validate_parameters(parameters, :get_screen_resolution_values)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_targeting(campaign_id, target_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/#{target_id}.do"
-      validation = validate_parameters(parameters, :get_targeting)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_targetings(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targetings.do"
-      validation = validate_parameters(parameters, :get_targetings)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.get_targeting_types(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/types.do"
-      validation = validate_parameters(parameters, :get_targeting_types)
-
-      if validation[:correct]
-        response = get(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.remove_targeting(campaign_id, target_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/#{target_id}/delete.do"
-      validation = validate_parameters(parameters, :remove_targeting)
-
-      if validation[:correct]
-        response = delete(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
+    #CAMPAIGN_ID  OS_NAME TARGET_ID
 
     ###########################
     # Campaign Adjusted CPM API
@@ -697,8 +560,7 @@ module Epom
       hash = extended_parameters[method_name]
       url = hash[:url]
       actual_params = hash[:parameters]
-      url = url.gsub('BANNER_ID', params[:bannerId])
-      url = url.gsub('BANNER_TYPE', params[:bannerType])
+      url = url.gsub('CAMPAIGN_ID', params[:campaignId])
       url = url.gsub('OS_NAME', params[:osName])
       url = url.gsub('TARGET_ID', params[:targetId])
       url = url.gsub('COUNTRY_CODE', params[:countryCode])
