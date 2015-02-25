@@ -136,270 +136,104 @@ module Epom
               :parameters => [:campaignId, :browser, :relation, :browserVersion, :rule, :hash, :timestamp, :username ],
               :method => :post
           },
+          :create_channel_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/channel/create.do',
+              :parameters => [:campaignId, :channel, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_cookie_value_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/cookie/create.do',
+              :parameters => [:campaignId, :cookieName, :cookieValue, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_country_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/country/create.do',
+              :parameters => [:campaignId, :countryCode, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_custom_parameter_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/custom/create.do',
+              :parameters => [:campaignId, :expression, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_day_of_week_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/dayofweek/create.do',
+              :parameters => [:campaignId, :dayOfWeek, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_device_format_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/deviceformat/create.do',
+              :parameters => [:campaignId, :deviceFormat, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_device_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/device/create.do',
+              :parameters => [:campaignId, :device, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_device_vendor_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/devicevendor/create.do',
+              :parameters => [:campaignId, :deviceVendor, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_domain_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/domain/create.do',
+              :parameters => [:campaignId, :domain, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_ip_range_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/iprange/create.do',
+              :parameters => [:campaignId, :ipFrom, :ipTo, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_language_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/language/create.do',
+              :parameters => [:campaignId, :languageCode, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_location_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/location/create.do',
+              :parameters => [:campaignId, :countryCode, :regionName, :cityName, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_mobile_carrier_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/mobilecarrier/create.do',
+              :parameters => [:campaignId, :mobileCarriers, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_os_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/os/create.do',
+              :parameters => [:campaignId, :operatingSystem, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_screen_resolution_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/resolution/create.do',
+              :parameters => [:campaignId, :relation, :screenWidth, :screenHeight, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_time_range_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/timerange/create.do',
+              :parameters => [:campaignId, :timeFrom, :timeTo, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_wifi_traffic_target => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/wifi/create.do',
+              :parameters => [:campaignId, :rule, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :disable_targeting => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/disable.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :enable_targeting => {
+              :url => '/rest-api/campaign/CAMPAIGN_ID/targeting/enable.do',
+              :parameters => [:campaignId, :hash, :timestamp, :username ],
+              :method => :post
+          },
       }
     end
     #CAMPAIGN_ID
-
-
-    def self.create_browser_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/browser/create.do"
-      validation = validate_parameters(parameters, :create_browser_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_channel_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/channel/create.do"
-      validation = validate_parameters(parameters, :create_channel_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_cookie_value_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/cookie/create.do"
-      validation = validate_parameters(parameters, :create_cookie_value_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_country_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/country/create.do"
-      validation = validate_parameters(parameters, :create_country_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_custom_parameter_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/custom/create.do"
-      validation = validate_parameters(parameters, :create_custom_parameter_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_day_of_week_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/dayofweek/create.do"
-      validation = validate_parameters(parameters, :create_day_of_week_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_device_format_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/deviceformat/create.do"
-      validation = validate_parameters(parameters, :create_device_format_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_device_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/device/create.do"
-      validation = validate_parameters(parameters, :create_device_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_device_vendor_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/devicevendor/create.do"
-      validation = validate_parameters(parameters, :create_device_vendor_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_domain_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/domain/create.do"
-      validation = validate_parameters(parameters, :create_domain_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_ip_range_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/iprange/create.do"
-      validation = validate_parameters(parameters, :create_ip_range_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_language_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/language/create.do"
-      validation = validate_parameters(parameters, :create_language_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_location_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/location/create.do"
-      validation = validate_parameters(parameters, :create_location_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_mobile_carrier_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/mobilecarrier/create.do"
-      validation = validate_parameters(parameters, :create_mobile_carrier_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_os_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/os/create.do"
-      validation = validate_parameters(parameters, :create_os_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_screen_resolution_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/resolution/create.do"
-      validation = validate_parameters(parameters, :create_screen_resolution_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_time_range_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/timerange/create.do"
-      validation = validate_parameters(parameters, :create_time_range_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.create_wifi_traffic_target(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/wifi/create.do"
-      validation = validate_parameters(parameters, :create_wifi_traffic_target)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.disable_targeting(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/disable.do"
-      validation = validate_parameters(parameters, :disable_targeting)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
-
-    def self.enable_targeting(campaign_id, parameters = {})
-      uri = "/rest-api/campaign/#{campaign_id}/targeting/enable.do"
-      validation = validate_parameters(parameters, :enable_targeting)
-
-      if validation[:correct]
-        response = post(uri, :query => parameters)
-        response.success?
-        #if response.success? then return class of type Campaign else raise Error
-      else
-        raise ArgumentError, validation[:raison]
-      end
-    end
 
     def self.get_browsers(campaign_id, parameters = {})
       uri = "/rest-api/campaign/#{campaign_id}/targeting/browsers/values.do"
