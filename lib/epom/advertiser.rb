@@ -1,5 +1,6 @@
 module Epom
-  class Advertiser
+  require 'epom_element'
+  class Advertiser < EpomElement
     include HTTParty
     base_uri 'https://n29.epom.com'
     default_params :output => 'json'
@@ -36,40 +37,8 @@ module Epom
       }
     end
 
-    def generic_validation(params, actual_params)
-      for key in params.keys
-        next if actual_params.keys.include?(key)
-        return false
-      end
-      true
-    end
-
-    def generic_method(method_name, params)
-      hash = extended_parameters[method_name]
-      url = hash[:url]
-      actual_params = hash[:parameters]
-      url = url.gsub('ADVERTISER_ID', params[:advertiserId])
-
-      valid = generic_validation(params, actual_params)
-      method = hash[:method]
-      if valid
-        response = send(method, url, :query => params) # revisar esto aqui
-        if response.success?
-          return response # revisar bien esto aqui tambien
-        else
-          # ver aqui que se hace
-        end
-      else
-        raise ArgumentError, 'Error'
-      end
-    end
-
-    def self.method_missing(name, *args)
-      if self.extended_parameters.keys.include?(name.to_sym)
-        generic_method(name, args)
-      else
-        super
-      end
+    def replace_string_identifiers(url, params)
+      url.gsub('ADVERTISER_ID', params[:advertiserId])
     end
 
   end

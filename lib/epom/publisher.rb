@@ -1,4 +1,5 @@
 module Epom
-  class Publisher
+  require 'epom/epom_element'
+  class Publisher < EpomElement
   end
 end
