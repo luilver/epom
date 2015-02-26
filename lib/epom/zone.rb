@@ -18,15 +18,21 @@ module Epom
               :parameters => [:zoneId, :hash, :timestamp, :username ],
               :method => :get
           },
-
+          :update_zone => {
+              :url => '/zones/update.do',
+              :parameters => [:zoneId, :siteId, :description, :name, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_zone => {
+              :url => '/zones/update.do',
+              :parameters => [:siteId, :description, :name, :hash, :timestamp, :username ],
+              :method => :post
+          }
       }
     end
-    #ZONE_ID
 
     def replace_string_identifiers(url, params)
-      new_url = url
-      #new_url = new_url.gsub('ZONE_ID', params[:zoneId])
-      #new_url.gsub('PLACEMENT_ID', params[:placementId])
+       url.gsub('ZONE_ID', params[:zoneId])
     end
   end
 end
