@@ -1,5 +1,6 @@
 module Epom
   class EpomElement
+
     def self.extended_parameters
       { }
     end
@@ -17,7 +18,7 @@ module Epom
       url = hash[:url]
       actual_params = hash[:parameters]
 
-      url = replace_string_identifiers(url)
+      url = replace_string_identifiers(url, params)
 
       valid = generic_validation(params, actual_params)
       method = hash[:method]
@@ -33,7 +34,7 @@ module Epom
       end
     end
 
-    def replace_string_identifiers(url)
+    def replace_string_identifiers(url, params)
       url
     end
 
