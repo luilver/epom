@@ -123,4 +123,5 @@ PLATFORMS
 DEPENDENCIES
   codeclimate-test-reporter
   epom!
+  rake
   sqlite3
