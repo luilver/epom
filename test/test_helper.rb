@@ -1,4 +1,4 @@
-require "codeclimate-test-resporter"
+require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
 # Configure Rails Environment
