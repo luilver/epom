@@ -26,6 +26,11 @@ module Epom
     end
   end
 
+  def self.log_in_using_authentication_token(token)
+    url = "/rest-api/auth/#{token}/login.do"
 
+    response = post(url,:query => {:username => username,:password => password })
+    response.success?
+  end
 
 end
