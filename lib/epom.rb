@@ -1,8 +1,4 @@
 module Epom
-  include HTTParty
-  base_uri 'https://n29.epom.com'
-  default_params :output => 'json'
-  format :json
 
   def self.create_hash(password)
     #TODO: Calculate hash like documentation
@@ -20,9 +16,9 @@ module Epom
   ############################
 
   def self.get_authentication_token(username, password)
-    url = '/rest-api/auth/token.do'
+    url = 'https://n29.epom.com/rest-api/auth/token.do'
 
-    response = post(url,:query => {:username => username,:password => password })
+    response = HTTParty.post(url,:query => {:username => username,:password => password })
     if response.success?
         return response[:authToken]
     else
@@ -31,9 +27,9 @@ module Epom
   end
 
   def self.log_in_using_authentication_token(token)
-    url = "/rest-api/auth/#{token}/login.do"
+    url = "https://n29.epom.com/rest-api/auth/#{token}/login.do"
 
-    response = post(url,:query => {:username => username,:password => password })
+    response = HTTParty.post(url,:query => {:username => username,:password => password })
     response.success?
   end
 
@@ -52,8 +48,8 @@ module Epom
   ############################
 
   def self.register_user(key, hash, timestamp, parameters = {})
-    url = "/rest-api/register-user/#{key}/#{hash}/#{timestamp}.do"
-    response = post(url,:query => parameters)
+    url = "https://n29.epom.com/rest-api/register-user/#{key}/#{hash}/#{timestamp}.do"
+    response = HTTParty.post(url,:query => parameters)
     response.success?
   end
 
