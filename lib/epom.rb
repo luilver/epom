@@ -37,4 +37,24 @@ module Epom
     response.success?
   end
 
+  ############################
+  #SIGN UP REST API
+  #
+  #
+  # 1. Log into your Supervisor account.
+  # 2. In the Menu section find Rest API Management button and click it.
+  # 3. In the Keys Management section you can generate Public Key and Private Key.
+  # 4. In the REST Sign Up Integration Guide you will find step-by-step guide for
+  #    Sign up integration.
+  #
+  # User registration in Epom system can be done through its public REST API by means
+  # of calling specific URI supported by server with HTTP POST request.
+  ############################
+
+  def self.register_user(key, hash, timestamp, parameters = {})
+    url = "/rest-api/register-user/#{key}/#{hash}/#{timestamp}.do"
+    response = post(url,:query => parameters)
+    response.success?
+  end
+
 end
