@@ -1,4 +1,18 @@
+require 'httparty'
+
 module Epom
+
+  env_file = File.join(Pathname.new(__FILE__).parent.parent, 'config', 'application.yml')
+  YAML.load(File.open(env_file)).each do |key, value|
+    ENV[key.to_s] = value.to_s
+  end if File.exists?(env_file)
+
+  include HTTParty
+    base_uri 'https://n29.epom.com/'
+    default_params :output => 'json'
+    format :json
+    http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
+    debug_output $stdout
 
   def self.create_hash(password)
     #TODO: Calculate hash like documentation
@@ -18,18 +32,18 @@ module Epom
   def self.get_authentication_token(username, password)
     url = 'https://n29.epom.com/rest-api/auth/token.do'
 
-    response = HTTParty.post(url,:query => {:username => username,:password => password })
+    response = post(url, :query => {:username => username,:password => password })
     if response.success?
-        return response[:authToken]
+      response.parsed_response['authToken']
     else
-        raise Exception, 'Error receiving token.'
+      raise Exception, 'Error receiving token.'
     end
   end
 
   def self.log_in_using_authentication_token(token)
     url = "https://n29.epom.com/rest-api/auth/#{token}/login.do"
 
-    response = HTTParty.post(url,:query => {:username => username,:password => password })
+    response = post(url,:query => {:username => username,:password => password })
     response.success?
   end
 
@@ -49,7 +63,7 @@ module Epom
 
   def self.register_user(key, hash, timestamp, parameters = {})
     url = "https://n29.epom.com/rest-api/register-user/#{key}/#{hash}/#{timestamp}.do"
-    response = HTTParty.post(url,:query => parameters)
+    response = post(url,:query => parameters)
     response.success?
   end
 
