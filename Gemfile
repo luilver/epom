@@ -13,6 +13,5 @@ gemspec
 
 # To use a debugger
 gem 'byebug', group: [:development, :test]
-gem 'figaro'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'rake'
