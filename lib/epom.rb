@@ -33,10 +33,14 @@ module Epom
     url = 'https://n29.epom.com/rest-api/auth/token.do'
 
     response = post(url, :query => {:username => username,:password => password })
-    if response.success?
-      response.parsed_response['authToken']
+    if response.success? 
+      if response.parsed_response['success']
+        response.parsed_response['authToken']
+      else
+        raise Exception, response.parsed_response['error']
+      end  
     else
-      raise Exception, 'Error receiving token.'
+      raise Exception, 'Error in communication with the API.'
     end
   end
 
