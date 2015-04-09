@@ -12,7 +12,6 @@ module Epom
     default_params :output => 'json'
     format :json
     http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
-    debug_output $stdout
 
   def self.create_hash(password)
     #TODO: Calculate hash like documentation

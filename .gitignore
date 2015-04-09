@@ -8,6 +8,7 @@ test/dummy/tmp/
 test/dummy/.sass-cache
 test/dummy/db/
 .idea/
+coverage/
 
 # Ignore application configuration
 /config/application.yml

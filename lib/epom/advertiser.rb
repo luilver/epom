@@ -1,10 +1,6 @@
 module Epom
   require 'epom_element'
   class Advertiser < EpomElement
-    include HTTParty
-    base_uri 'https://n29.epom.com'
-    default_params :output => 'json'
-    format :json
 
     def self.extended_parameters
       {
