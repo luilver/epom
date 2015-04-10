@@ -24,11 +24,11 @@ module Epom
     end
 
     def self.replace_string_identifiers(url, params)
-      byebug
-      url.gsub('TOKEN', params[:token]) if url.include?('TOKEN')
-      url.gsub('KEY', params[:key]) if url.include?('KEY')
-      url.gsub('HASH', params[:hash]) if url.include?('HASH')
-      url.gsub('TIMESTAMP', params[:timestamp]) if url.include?('TIMESTAMP')
+      url.gsub!('TOKEN', params[:token]) if url.include?('TOKEN')
+      url.gsub!('KEY', params[:key]) if url.include?('KEY')
+      url.gsub!('HASH', params[:hash]) if url.include?('HASH')
+      url.gsub!('TIMESTAMP', params[:timestamp]) if url.include?('TIMESTAMP')
+      url
     end
 
   end

@@ -7,12 +7,6 @@ module Epom
     ENV[key.to_s] = value.to_s
   end if File.exists?(env_file)
 
-  include HTTParty
-    base_uri 'https://n29.epom.com/'
-    default_params :output => 'json'
-    format :json
-    http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
-
   def self.create_hash(password)
     #TODO: Calculate hash like documentation
     return 'HASH_FOR_EPOM'

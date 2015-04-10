@@ -1,12 +1,18 @@
 module Epom
   class EpomElement
 
+    include HTTParty
+      base_uri 'https://n29.epom.com/'
+      default_params :output => 'json'
+      format :json
+      http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
+      debug_output $stderr
+
     def self.extended_parameters
       { }
     end
 
     def self.generic_validation(params, api_params)
-      byebug
       for key in params.keys
         next if api_params.include?(key)
         return false
