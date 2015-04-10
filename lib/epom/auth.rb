@@ -10,11 +10,6 @@ module Epom
               :parameters => [:username, :password],
               :method => :post
           },
-          :log_in_using_authentication_token => {
-              :url => '/rest-api/auth/TOKEN/login.do',
-              :parameters => [:token],
-              :method => :post
-          },
           :register_user => {
               :url => '/rest-api/register-user/KEY/HASH/TIMESTAMP.do',
               :parameters => [:key, :hash, :timestamp, :username, :password, :email, :role, :phone, :firstName, :lastName, :websiteUrl, :company, :country, :state, :enable_market_integration],

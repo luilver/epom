@@ -26,13 +26,13 @@ module Epom
       api_params = hash[:parameters]
 
       url = replace_string_identifiers(url, params)
-
+      
       valid = generic_validation(params, api_params)
       method = hash[:method]
       if valid
         response = send(method, url, :query => params) # revisar esto aqui
         if response.success?
-          return response # revisar bien esto aqui tambien
+          return response.parsed_response # revisar bien esto aqui tambien
         else
           # ver aqui que se hace
         end
