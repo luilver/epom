@@ -16,7 +16,25 @@ class AdvertiserTest < ActiveSupport::TestCase
     	response = Epom::Advertiser.delete_advertiser(params)
       assert_instance_of Hash, response
       assert response['success']
-      assert_instance_of String, response['authToken']
+    rescue SocketError => e
+      assert_equal "getaddrinfo: Name or service not known", e.message
+    end 
+  end
+
+  test "get_advertiser_permissions_for_user" do
+  	params = {
+  		:hash => Epom.create_hash(Epom.create_hash('username'), 'password', 'timestamp'),
+  		:timestamp => '', 
+  		:username => ''}
+  	begin
+    	response = Epom::Advertiser.get_advertiser_permissions_for_user(params)
+      assert_instance_of Array, response
+      if response.count > 0
+      	first = response[0]
+      	assert_instance_of Hash, first
+      	assert_includes first.keys, 'id'
+      	assert_includes first.keys, 'name'
+      end
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
