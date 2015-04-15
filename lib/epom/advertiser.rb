@@ -1,5 +1,6 @@
+require 'epom/epom_element'
+
 module Epom
-  require 'epom_element'
   class Advertiser < EpomElement
 
     def self.extended_parameters
