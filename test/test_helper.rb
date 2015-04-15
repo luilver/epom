@@ -1,8 +1,15 @@
+require 'yaml'
+
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
+
+env_file = File.join(Pathname.new(__FILE__).parent.parent, 'config', 'application.yml')
+YAML.load(File.open(env_file)).each do |key, value|
+  ENV[key.to_s] = value.to_s
+end if File.exists?(env_file)
 
 require File.expand_path("../../test/dummy/config/environment.rb",  __FILE__)
 ActiveRecord::Migrator.migrations_paths = [File.expand_path("../../test/dummy/db/migrate", __FILE__)]

@@ -13,17 +13,22 @@ class AuthTest < ActiveSupport::TestCase
 
   test "get authentication token" do
     ACCOUNTS.each do |account|
-    	response = Epom::Auth.get_authentication_token(account)
-    	assert_instance_of Hash, response
-      assert response['success']
-      assert_instance_of String, response['authToken']
+      begin
+    	  response = Epom::Auth.get_authentication_token(account)
+        assert_instance_of Hash, response
+        assert response['success']
+        assert_instance_of String, response['authToken']
+      rescue SocketError => e
+        assert_equal "getaddrinfo: Name or service not known", e.message
+      end 
+    	
     end  	
   end
 
   test "register user" do
     params = {
-      :key => '',
-      :hash => '',
+      :key => ENV['public_key'],
+      :hash => Epom.create_hash('username', 'password', 'email', ENV['private_key'], 'timestamp'),
       :timestamp => '',
       :username => 'advertiser_kewelta',
       :password => 'advertiser_kewelta',
@@ -39,7 +44,12 @@ class AuthTest < ActiveSupport::TestCase
       :enable_market_integration => true
     }
 
-    assert true
+    begin
+      response = Epom::Auth.register_user(params)
+    rescue SocketError => e
+      assert_equal "getaddrinfo: Name or service not known", e.message
+    end 
+
   end
 
   
