@@ -1,31 +1,38 @@
 module Epom
   class EpomElement
 
+    include HTTParty
+      base_uri 'https://n29.epom.com/'
+      default_params :output => 'json'
+      format :json
+      http_proxy ENV['proxy_address'], ENV['proxy_port'], ENV['proxy_user'], ENV['proxy_password']
+      debug_output $stderr
+
     def self.extended_parameters
       { }
     end
 
-    def generic_validation(params, actual_params)
+    def self.generic_validation(params, api_params)
       for key in params.keys
-        next if actual_params.keys.include?(key)
+        next if api_params.include?(key)
         return false
       end
       true
     end
 
-    def generic_method(method_name, params)
+    def self.generic_method(method_name, params)
       hash = extended_parameters[method_name]
       url = hash[:url]
-      actual_params = hash[:parameters]
+      api_params = hash[:parameters]
 
       url = replace_string_identifiers(url, params)
-
-      valid = generic_validation(params, actual_params)
+      
+      valid = generic_validation(params, api_params)
       method = hash[:method]
       if valid
         response = send(method, url, :query => params) # revisar esto aqui
         if response.success?
-          return response # revisar bien esto aqui tambien
+          return response.parsed_response # revisar bien esto aqui tambien
         else
           # ver aqui que se hace
         end
@@ -34,13 +41,13 @@ module Epom
       end
     end
 
-    def replace_string_identifiers(url, params)
+    def self.replace_string_identifiers(url, params)
       url
     end
 
     def self.method_missing(name, *args)
       if self.extended_parameters.keys.include?(name.to_sym)
-        generic_method(name, args)
+        self.generic_method(name, args[0])
       else
         super
       end
