@@ -9,7 +9,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "delete_advertiser" do
   	params = {
   		:advertiserId => 123, 
-  		:hash => Epom.create_hash(Epom.create_hash('username'), 'password', 'timestamp'),
+  		:hash => Epom.create_hash(Epom.create_hash('password'), 'timestamp'),
   		:timestamp => '', 
   		:username => ''}
   	begin
@@ -23,7 +23,7 @@ class AdvertiserTest < ActiveSupport::TestCase
 
   test "get_advertiser_permissions_for_user" do
   	params = {
-  		:hash => Epom.create_hash(Epom.create_hash('username'), 'password', 'timestamp'),
+  		:hash => Epom.create_hash(Epom.create_hash('password'), 'timestamp'),
   		:timestamp => '', 
   		:username => ''}
   	begin
@@ -43,7 +43,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "get_campaigns_for_advertiser" do
   	params = {
   		:advertiserId => 123, 
-  		:hash => Epom.create_hash(Epom.create_hash('username'), 'password', 'timestamp'),
+  		:hash => Epom.create_hash(Epom.create_hash('password'), 'timestamp'),
   		:timestamp => '', 
   		:username => ''}
   	begin
