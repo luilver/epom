@@ -24,7 +24,6 @@ module Epom
       hash = extended_parameters[method_name]
       url = hash[:url]
       api_params = hash[:parameters]
-
       url = replace_string_identifiers(url, params)
       
       valid = generic_validation(params, api_params)
