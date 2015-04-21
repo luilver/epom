@@ -29,7 +29,7 @@ class AuthTest < ActiveSupport::TestCase
     timestamp = Time.now.to_i
     params = {
       :key => ENV['public_key'],
-      :hash => Epom.create_hash('username', 'password', 'email', ENV['private_key'], timestamp),
+      :hash => Epom.create_hash('advertiser_kewelta', 'advertiser_kewelta', 'advertiser@kewelta.com', ENV['private_key'], timestamp),
       :timestamp => timestamp,
       :username => 'advertiser_kewelta',
       :password => 'advertiser_kewelta',
@@ -38,9 +38,9 @@ class AuthTest < ActiveSupport::TestCase
       :phone => '+22(345)7891012',
       :firstName => 'kewelta',
       :lastName => 'kewelta',
-      :websiteUrl => 'wwww.kewelta.com',
+      :websiteUrl => 'http://www.qwe.com',
       :company => 'kewelta',
-      :country => 'Cuba',
+      :country => 'CU',
       :state => 'La Habana',
       :enable_market_integration => true
     }
