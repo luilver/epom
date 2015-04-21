@@ -35,7 +35,8 @@ module Epom
     end
 
     def replace_string_identifiers(url, params)
-      url.gsub('ADVERTISER_ID', params[:advertiserId])
+      url.gsub!('ADVERTISER_ID', params[:advertiserId].to_s) if url.include?('ADVERTISER_ID')
+      url
     end
 
   end

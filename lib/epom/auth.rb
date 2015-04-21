@@ -22,7 +22,7 @@ module Epom
       url.gsub!('TOKEN', params[:token]) if url.include?('TOKEN')
       url.gsub!('KEY', params[:key]) if url.include?('KEY')
       url.gsub!('HASH', params[:hash]) if url.include?('HASH')
-      url.gsub!('TIMESTAMP', params[:timestamp].to_i) if url.include?('TIMESTAMP')
+      url.gsub!('TIMESTAMP', params[:timestamp].to_s) if url.include?('TIMESTAMP')
       url
     end
 
