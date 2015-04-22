@@ -1,5 +1,6 @@
+require 'epom/epom_element'
+
 module Epom
-  require 'epom_element'
   class Advertiser < EpomElement
 
     def self.extended_parameters
@@ -33,8 +34,9 @@ module Epom
       }
     end
 
-    def replace_string_identifiers(url, params)
-      url.gsub('ADVERTISER_ID', params[:advertiserId])
+    def self.replace_string_identifiers(url, params)
+      url.gsub!('ADVERTISER_ID', params[:advertiserId].to_s) if url.include?('ADVERTISER_ID')
+      url
     end
 
   end

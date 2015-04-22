@@ -26,26 +26,29 @@ class AuthTest < ActiveSupport::TestCase
   end
 
   test "register user" do
+    timestamp = Time.now.to_i
     params = {
       :key => ENV['public_key'],
-      :hash => Epom.create_hash('username', 'password', 'email', ENV['private_key'], 'timestamp'),
-      :timestamp => '',
-      :username => 'advertiser_kewelta',
+      :hash => Epom.create_hash("advertiser_kewelta_#{timestamp}", 'advertiser_kewelta', "advertiser_#{timestamp}@kewelta.com", ENV['private_key'], timestamp),
+      :timestamp => timestamp,
+      :username => "advertiser_kewelta_#{timestamp}",
       :password => 'advertiser_kewelta',
-      :email => 'advertiser@kewelta.com',
+      :email => "advertiser_#{timestamp}@kewelta.com",
       :role => 'ADVERTISER',
       :phone => '+22(345)7891012',
       :firstName => 'kewelta',
       :lastName => 'kewelta',
-      :websiteUrl => 'wwww.kewelta.com',
+      :websiteUrl => 'http://www.qwe.com',
       :company => 'kewelta',
-      :country => 'Cuba',
+      :country => 'CU',
       :state => 'La Habana',
       :enable_market_integration => true
     }
 
     begin
       response = Epom::Auth.register_user(params)
+      assert_instance_of Hash, response
+      assert response['success']
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
