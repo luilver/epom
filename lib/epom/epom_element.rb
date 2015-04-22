@@ -33,10 +33,10 @@ module Epom
         if response.success?
           return response.parsed_response # revisar bien esto aqui tambien
         else
-          # ver aqui que se hace
+          response.code
         end
       else
-        raise ArgumentError, 'Error'
+        raise ArgumentError, 'Error in generic_validation method'
       end
     end
 

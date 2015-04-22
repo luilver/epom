@@ -9,10 +9,10 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "delete_advertiser" do
   	timestamp = Time.now.to_i
     params = {
-  		:advertiserId => 123, 
-  		:hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
+  		:advertiserId => 711, 
+  		:hash => Epom.create_hash(Epom.create_hash('network'), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'supervisor'}
+  		:username => 'network'}
   	begin
     	response = Epom::Advertiser.delete_advertiser(params)
       assert_instance_of Hash, response
@@ -45,7 +45,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "get_campaigns_for_advertiser" do
     timestamp = Time.now.to_i
   	params = {
-  		:advertiserId => 123, 
+  		:advertiserId => '12', 
   		:hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
   		:timestamp => timestamp, 
   		:username => 'supervisor'}
@@ -58,6 +58,25 @@ class AdvertiserTest < ActiveSupport::TestCase
       	assert_includes first.keys, 'id'
       	assert_includes first.keys, 'name'
       end
+    rescue SocketError => e
+      assert_equal "getaddrinfo: Name or service not known", e.message
+    end 
+  end
+
+  test "create advertiser" do
+    timestamp = Time.now.to_i
+    params = {
+      :hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
+      :timestamp => timestamp, 
+      :username => 'supervisor',
+      :name => "pachanga #{timestamp}",
+      :contactName => "pachanga contactName",
+      :contactEmail => "pachanga contactEmail",
+      :description => "pachanga description"}
+    begin
+      response = Epom::Advertiser.create_advertiser(params)
+      assert_instance_of Hash, response
+      assert response['success']
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
