@@ -45,10 +45,10 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "get_campaigns_for_advertiser" do
     timestamp = Time.now.to_i * 1000
   	params = {
-  		:advertiserId => 679, 
-  		:hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
+  		:advertiserId => 680, 
+  		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'supervisor'}
+  		:username => 'kewelta'}
   	begin
     	response = Epom::Advertiser.get_campaigns_for_advertiser(params)
       assert_instance_of Array, response
