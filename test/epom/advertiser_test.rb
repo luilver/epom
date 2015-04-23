@@ -9,7 +9,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "delete_advertiser" do
   	timestamp = Time.now.to_i
     params = {
-  		:advertiserId => 711, 
+  		:advertiserId => 679, 
   		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
   		:timestamp => timestamp, 
   		:username => 'kewelta'}
@@ -45,7 +45,7 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "get_campaigns_for_advertiser" do
     timestamp = Time.now.to_i
   	params = {
-  		:advertiserId => '12', 
+  		:advertiserId => 679, 
   		:hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
   		:timestamp => timestamp, 
   		:username => 'supervisor'}

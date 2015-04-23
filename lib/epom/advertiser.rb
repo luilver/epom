@@ -11,12 +11,12 @@ module Epom
               :method => :delete
           },
           :get_advertiser_permissions_for_user => {
-              :url => '/advertiserShares.do',
+              :url => '/rest-api/advertiserShares.do',
               :parameters => [:hash, :timestamp, :username ],
               :method => :get
           },
           :get_campaigns_for_advertiser => {
-              :url => '/advertiser/ADVERTISER_ID/campaigns.do',
+              :url => '/rest-api/advertiser/ADVERTISER_ID/campaigns.do',
               :parameters => [:advertiserId, :hash, :timestamp, :username ],
               :method => :get
           },
