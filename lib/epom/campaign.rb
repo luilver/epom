@@ -1,11 +1,9 @@
-module Epom
-  require 'epom_element'
-  class Campaign < EpomElement
-    include HTTParty
-    base_uri 'https://n29.epom.com'
-    default_params :output => 'json'
-    format :json
+require 'epom_element'
 
+
+module Epom
+  class Campaign < EpomElement
+    
     def self.extended_parameters
       {
           :create_campaign => {
@@ -424,7 +422,7 @@ module Epom
       }
     end
 
-    def replace_string_identifiers(url, params)
+    def self.replace_string_identifiers(url, params)
       new_url = url
       new_url = new_url.gsub('CAMPAIGN_ID', params[:campaignId])
       new_url = new_url.gsub('OS_NAME', params[:osName])

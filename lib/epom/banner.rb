@@ -1,11 +1,7 @@
-module Epom
-  require 'epom/epom_element'
-  class Banner < EpomElement
-    include HTTParty
-    base_uri 'https://n29.epom.com'
-    default_params :output => 'json'
-    format :json
+require 'epom/epom_element'
 
+module Epom
+  class Banner < EpomElement
 
 		def self.extended_parameters
 			{
@@ -440,7 +436,7 @@ module Epom
 			}
 		end
 
-    def replace_string_identifiers(url, params)
+    def self.replace_string_identifiers(url, params)
       new_url = url
       new_url = new_url.gsub('BANNER_ID', params[:bannerId])
       new_url = new_url.gsub('BANNER_TYPE', params[:bannerType])

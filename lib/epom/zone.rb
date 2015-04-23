@@ -1,10 +1,7 @@
+require 'epom/epom_element'
+
 module Epom
-  require 'epom/epom_element'
   class Zone < EpomElement
-    include HTTParty
-    base_uri 'https://n29.epom.com'
-    default_params :output => 'json'
-    format :json
 
     def self.extended_parameters
       {
@@ -31,7 +28,7 @@ module Epom
       }
     end
 
-    def replace_string_identifiers(url, params)
+    def self.replace_string_identifiers(url, params)
        url.gsub('ZONE_ID', params[:zoneId])
     end
   end

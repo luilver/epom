@@ -1,11 +1,7 @@
-module Epom
-  require 'epom/epom_element'
-  class Site < EpomElement
-    include HTTParty
-    base_uri 'https://n29.epom.com'
-    default_params :output => 'json'
-    format :json
+require 'epom/epom_element'
 
+module Epom
+  class Site < EpomElement
     def self.extended_parameters
       {
           :delete_site => {
@@ -61,7 +57,7 @@ module Epom
       }
     end
 
-    def replace_string_identifiers(url, params)
+    def self.replace_string_identifiers(url, params)
       new_url = url
       new_url = new_url.gsub('SITE_ID', params[:siteId])
       new_url.gsub('PLACEMENT_ID', params[:placementId])
