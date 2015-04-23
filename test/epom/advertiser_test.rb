@@ -71,7 +71,7 @@ class AdvertiserTest < ActiveSupport::TestCase
       :username => 'kewelta',
       :name => "pachanga #{timestamp}",
       :contactName => "pachanga contactName",
-      :contactEmail => "pachanga contactEmail",
+      :contactEmail => "pachasnga@gmail.com",
       :description => "pachanga description"}
     begin
       response = Epom::Advertiser.create_advertiser(params)
