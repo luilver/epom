@@ -5,7 +5,8 @@ class AuthTest < ActiveSupport::TestCase
   ACCOUNTS = [{:username => 'supervisor', :password => 'supervisor'},
               {:username => 'network', :password => 'network'},
               {:username => 'publisher', :password => 'publisher'},
-              {:username => 'advertiser', :password => 'advertiser'},]
+              {:username => 'advertiser', :password => 'advertiser'},
+              {:username => 'kewelta', :password => 'kewelta'}]
 
   test "truth" do
     assert_kind_of Class, Epom::Auth
