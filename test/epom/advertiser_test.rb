@@ -10,9 +10,9 @@ class AdvertiserTest < ActiveSupport::TestCase
   	timestamp = Time.now.to_i
     params = {
   		:advertiserId => 711, 
-  		:hash => Epom.create_hash(Epom.create_hash('network'), timestamp),
+  		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'network'}
+  		:username => 'kewelta'}
   	begin
     	response = Epom::Advertiser.delete_advertiser(params)
       assert_instance_of Hash, response
@@ -25,9 +25,9 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "get_advertiser_permissions_for_user" do
     timestamp = Time.now.to_i
   	params = {
-  		:hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
+  		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'supervisor'}
+  		:username => 'kewelta'}
   	begin
     	response = Epom::Advertiser.get_advertiser_permissions_for_user(params)
       assert_instance_of Array, response
@@ -66,9 +66,9 @@ class AdvertiserTest < ActiveSupport::TestCase
   test "create advertiser" do
     timestamp = Time.now.to_i
     params = {
-      :hash => Epom.create_hash(Epom.create_hash('supervisor'), timestamp),
+      :hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
       :timestamp => timestamp, 
-      :username => 'supervisor',
+      :username => 'kewelta',
       :name => "pachanga #{timestamp}",
       :contactName => "pachanga contactName",
       :contactEmail => "pachanga contactEmail",
