@@ -27,7 +27,7 @@ class AuthTest < ActiveSupport::TestCase
   end
 
   test "register user" do
-    timestamp = Time.now.to_i
+    timestamp = Time.now.to_i * 1000
     params = {
       :key => ENV['public_key'],
       :hash => Epom.create_hash("advertiser_kewelta_#{timestamp}", 'advertiser_kewelta', "advertiser_#{timestamp}@kewelta.com", ENV['private_key'], timestamp),
