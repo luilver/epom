@@ -19,7 +19,7 @@ class CampaignTest < ActiveSupport::TestCase
   	begin
     	response = Epom::Campaign.create_campaign(params)
       assert_instance_of Hash, response
-      assert response['success']
+      assert_instance_of Fixnum, response['id']
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 

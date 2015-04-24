@@ -12,7 +12,7 @@ class BannerTest < ActiveSupport::TestCase
   test "create_banner" do
   	timestamp = Time.now.to_i * 1000
     params = {
-  		:campaignId => nil, 
+  		:campaignId => 1247, 
   		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
   		:timestamp => timestamp, 
   		:username => 'kewelta',
@@ -23,7 +23,7 @@ class BannerTest < ActiveSupport::TestCase
   	begin
     	response = Epom::Banner.create_banner(params)
       assert_instance_of Hash, response
-      assert response['success']
+      assert_instance_of Fixnum, response['id']
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
