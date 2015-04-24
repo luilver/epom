@@ -437,12 +437,12 @@ module Epom
 		end
 
     def self.replace_string_identifiers(url, params)
-      new_url = url
-      new_url = new_url.gsub('BANNER_ID', params[:bannerId])
-      new_url = new_url.gsub('BANNER_TYPE', params[:bannerType])
-      new_url = new_url.gsub('OS_NAME', params[:osName])
-      new_url = new_url.gsub('TARGET_ID', params[:targetId])
-      new_url.gsub('COUNTRY_CODE', params[:countryCode])
+      url.gsub!('BANNER_ID', params[:bannerId]) if url.include?("BANNER_ID")
+      url.gsub!('BANNER_TYPE', params[:bannerType]) if url.include?('BANNER_TYPE')
+      url.gsub!('OS_NAME', params[:osName]) if url.include?('OS_NAME')
+      url.gsub!('TARGET_ID', params[:targetId]) if url.include?('TARGET_ID')
+      url.gsub!('COUNTRY_CODE', params[:countryCode]) if url.include?('COUNTRY_CODE')
+      url
     end
 
   end
