@@ -13,11 +13,7 @@ module Epom
     end
 
     def self.generic_validation(params, api_params)
-      for key in params.keys
-        next if api_params.include?(key)
-        return false
-      end
-      true
+      params.keys.all? {|key| api_params.include?(key)}
     end
 
     def self.generic_method(method_name, params)
@@ -29,9 +25,9 @@ module Epom
       valid = generic_validation(params, api_params)
       method = hash[:method]
       if valid
-        response = send(method, url, :query => params) # revisar esto aqui
+        response = send(method, url, :query => params)
         if response.success?
-          return response.parsed_response # revisar bien esto aqui tambien
+          return response.parsed_response
         else
           response.code
         end
