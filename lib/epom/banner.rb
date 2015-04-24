@@ -22,7 +22,7 @@ module Epom
         },
         :get_banner_ad_unit_values => {
             :url => '/rest-api/banner/adunit/values.do',
-            :parameters => [:bannerType, :hash, :timestamp, :username ],
+            :parameters => [:placementType, :hash, :timestamp, :username ],
             :method => :get
         },
         :get_banner_pricing => {
