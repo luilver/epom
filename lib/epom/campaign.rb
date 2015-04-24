@@ -1,5 +1,4 @@
-require 'epom_element'
-
+require 'epom/epom_element'
 
 module Epom
   class Campaign < EpomElement
@@ -423,12 +422,12 @@ module Epom
     end
 
     def self.replace_string_identifiers(url, params)
-      new_url = url
-      new_url = new_url.gsub('CAMPAIGN_ID', params[:campaignId])
-      new_url = new_url.gsub('OS_NAME', params[:osName])
-      new_url = new_url.gsub('TARGET_ID', params[:targetId])
-      new_url = new_url.gsub('ACTION_KEY', params[:actionKey])
-      new_url.gsub('COUNTRY_CODE', params[:countryCode])
+      url.gsub!('CAMPAIGN_ID', params[:campaignId]) if url.include?('CAMPAIGN_ID')
+      url.gsub!('OS_NAME', params[:osName]) if url.include?('OS_NAME')
+      url.gsub!('TARGET_ID', params[:targetId]) if url.include?('TARGET_ID')
+      url.gsub!('ACTION_KEY', params[:actionKey]) if url.include?('ACTION_KEY')
+      url.gsub!('COUNTRY_CODE', params[:countryCode]) if url.include?('COUNTRY_CODE')
+      url
     end
 
   end
