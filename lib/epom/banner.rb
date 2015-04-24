@@ -7,7 +7,7 @@ module Epom
 			{
 				:create_banner => {
 					:url => '/rest-api/banner/create.do',
-					:parameters => [:placementType, :active, :name, :allowNewPlacementsAutoLinking, :autolinkCategories, :weight, :adUnitId, :bannerType, :code, :url, :mobileAdvertisingNetwork, :mobileAdvertisingNetworkParameters, :campaignId, :hash, :timestamp, :username ],
+					:parameters => [:placementType, :active, :name, :allowNewPlacementsAutoLinking, :autolinkCategories, :weight, :adUnitId, :bannerType, :code, :url, :mobileAdvertisingNetwork, :mobileAdvertisingNetworkParameters, :campaignId, :hash, :timestamp, :username, :commonsMultipartFile ],
 					:method => :post
 				},
         :delete_banner => {

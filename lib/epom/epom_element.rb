@@ -1,7 +1,7 @@
 module Epom
   class EpomElement
 
-    include HTTParty
+    include HTTMultiParty
       base_uri 'https://n29.epom.com/'
       default_params :output => 'json'
       format :json

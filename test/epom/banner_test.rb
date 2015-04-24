@@ -19,7 +19,9 @@ class BannerTest < ActiveSupport::TestCase
       :placementType => Epom::PlacementType::SITE_PLACEMENT,
       :active => true,
       :name => "banner #{timestamp}",
-      :adUnitId => 3
+      :adUnitId => 10,
+      :bannerType => 'LOCAL_FILE',
+      :commonsMultipartFile => File.new('test/logo-128x128.png')
     }
   	begin
     	response = Epom::Banner.create_banner(params)
