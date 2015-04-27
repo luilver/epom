@@ -20,6 +20,8 @@ class BannerTest < ActiveSupport::TestCase
       :active => true,
       :name => "banner #{timestamp}",
       :adUnitId => 10,
+      :adUnitWidth => 128,
+      :adUnitHeight => 114,
       :bannerType => 'LOCAL_FILE',
       :commonsMultipartFile => File.new('test/logo-128x128.png')
     }
