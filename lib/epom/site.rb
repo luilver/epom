@@ -58,9 +58,9 @@ module Epom
     end
 
     def self.replace_string_identifiers(url, params)
-      new_url = url
-      new_url = new_url.gsub('SITE_ID', params[:siteId])
-      new_url.gsub('PLACEMENT_ID', params[:placementId])
+      url.gsub!('SITE_ID', params[:siteId]) if url.include?('SITE_ID')
+      url.gsub!('PLACEMENT_ID', params[:placementId]) if url.include?('PLACEMENT_ID')
+      url
     end
   end
 end
