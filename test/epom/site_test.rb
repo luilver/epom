@@ -26,7 +26,7 @@ class SiteTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['epom_username']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['epom_password'],
-      siteId => 1
+      :siteId => 721
     }
     begin
       response = Epom::Site.get_site_cpm_threshold_summary(params)
@@ -41,7 +41,7 @@ class SiteTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['epom_username']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['epom_password'],
-      siteId => 1
+      :siteId => 721
     }
     begin
       response = Epom::Site.get_site_pricing(params)
