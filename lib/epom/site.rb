@@ -15,12 +15,12 @@ module Epom
               :method => :post
           },
           :get_site_cpm_threshold_summary => {
-              :url => '/sites/SITE_ID/cpm-thresholds.do',
+              :url => '/rest-api/sites/SITE_ID/cpm-thresholds.do',
               :parameters => [:siteId, :hash, :timestamp, :username ],
               :method => :get
           },
           :get_site_pricing => {
-              :url => '/sites/SITE_ID/pricing.do',
+              :url => '/rest-api/sites/SITE_ID/pricing.do',
               :parameters => [:siteId, :hash, :timestamp, :username ],
               :method => :get
           },
@@ -35,7 +35,7 @@ module Epom
               :method => :get
           },
           :set_site_cpm_thresholds => {
-              :url => '/sites/SITE_ID/cpm-thresholds.do',
+              :url => '/rest-api/sites/SITE_ID/cpm-thresholds.do',
               :parameters => [:siteId, :cpmThreshold, :siteCountryCPMThresholds, :hash, :timestamp, :username ],
               :method => :post
           },
@@ -58,8 +58,8 @@ module Epom
     end
 
     def self.replace_string_identifiers(url, params)
-      url.gsub!('SITE_ID', params[:siteId]) if url.include?('SITE_ID')
-      url.gsub!('PLACEMENT_ID', params[:placementId]) if url.include?('PLACEMENT_ID')
+      url.gsub!('SITE_ID', params[:siteId].to_s) if url.include?('SITE_ID')
+      url.gsub!('PLACEMENT_ID', params[:placementId].to_s) if url.include?('PLACEMENT_ID')
       url
     end
   end

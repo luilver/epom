@@ -15,6 +15,13 @@ class SiteTest < ActiveSupport::TestCase
     }
   	begin
     	response = Epom::Site.get_sites(params)
+      assert_instance_of Array, response
+      if response.count > 0
+        first = response.first
+        assert_instance_of Hash, first
+        assert_instance_of Fixnum, first['id']
+        assert_instance_of String, first['name']
+      end
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
@@ -30,6 +37,12 @@ class SiteTest < ActiveSupport::TestCase
     }
     begin
       response = Epom::Site.get_site_cpm_threshold_summary(params)
+      assert_instance_of Array, response
+      if response.count > 0
+        first = response.first
+        assert_instance_of Hash, first
+        assert_instance_of Float, first['cpmThreshold']
+      end
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
@@ -45,6 +58,10 @@ class SiteTest < ActiveSupport::TestCase
     }
     begin
       response = Epom::Site.get_site_pricing(params)
+      assert_instance_of Hash, response
+      assert_instance_of String, response['paymentModel']
+      assert_instance_of Float, response['price']
+      assert_instance_of String, response['pricingType']
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 
