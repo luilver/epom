@@ -23,6 +23,8 @@ class BannerTest < ActiveSupport::TestCase
       :adUnitWidth => 128,
       :adUnitHeight => 114,
       :bannerType => 'LOCAL_FILE',
+      # :imageFileLink => 'https://n29.epom.com/files29/637/1209/2101/Go%27Bang%20Banner.gif?attachment',
+      # :flashFileLink => 'https://n29.epom.com/files29/637/1209/2101/Go%27Bang%20Banner.gif?attachment',
       :commonsMultipartFile => File.new('test/logo-128x128.png')
     }
   	begin
