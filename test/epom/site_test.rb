@@ -107,10 +107,14 @@ class SiteTest < ActiveSupport::TestCase
       :username => ENV['epom_username'],
       :name => "publisher_#{timestamp}",
       :url => 'http://www.publisher.com',
-      :email => "publisher@example.com"
+      :email => "publisher@example.com",
+      :categoryId => 2
     }
     begin
       response = Epom::Site.create_site(params)
+      assert_instance_of Hash, response
+      assert_instance_of Fixnum, response['id']
+      assert response['success']
     rescue SocketError => e
       assert_equal "getaddrinfo: Name or service not known", e.message
     end 

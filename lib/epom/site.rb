@@ -51,12 +51,12 @@ module Epom
           },
           :update_site => {
               :url => '/rest-api/sites/update.do',
-              :parameters => [:id, :createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
+              :parameters => [:id, :createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :categoryId, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
               :method => :post
           },
           :create_site => {
               :url => '/rest-api/sites/update.do',
-              :parameters => [:createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
+              :parameters => [:createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :categoryId, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
               :method => :post
           },
       }
