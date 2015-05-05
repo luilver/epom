@@ -9,55 +9,146 @@ class BannerTest < ActiveSupport::TestCase
     assert_kind_of Class, Epom::Banner
   end
 
-  # test "create_banner" do
-  # 	timestamp = Time.now.to_i * 1000
-  #   params = {
-  # 		:campaignId => 1247, 
-  # 		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
-  # 		:timestamp => timestamp, 
-  # 		:username => 'kewelta',
-  #     :placementType => Epom::PlacementType::SITE_PLACEMENT,
-  #     :active => true,
-  #     :name => "banner #{timestamp}",
-  #     :adUnitId => 10,
-  #     :adUnitWidth => 128,
-  #     :adUnitHeight => 114,
-  #     :bannerType => 'LOCAL_FILE',
-  #     # :imageFileLink => 'https://n29.epom.com/files29/637/1209/2101/Go%27Bang%20Banner.gif?attachment',
-  #     # :flashFileLink => 'https://n29.epom.com/files29/637/1209/2101/Go%27Bang%20Banner.gif?attachment',
-  #     :commonsMultipartFile => File.new('test/logo-128x128.png')
-  #   }
-  # 	begin
-  #   	response = Epom::Banner.create_banner(params)
-  #     assert_instance_of Hash, response
-  #     assert_instance_of Fixnum, response['id']
-  #   rescue SocketError => e
-  #     assert_equal "getaddrinfo: Name or service not known", e.message
-  #   end 
-  # end
-
-  test "get_banner_ad_unit_values" do
-    timestamp = Time.now.to_i * 1000
+  test "create_banner" do
+  	timestamp = Time.now.to_i * 1000
     params = {
-      :hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
-      :timestamp => timestamp, 
-      :username => 'kewelta',
-      :placementType => Epom::PlacementType::SITE_PLACEMENT
+  		:campaignId => ENV['pampaign_id'], 
+  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+  		:timestamp => timestamp, 
+  		:username => ENV['username'],
+
+      :weight => 1,
+      :thirdTrackingCode => '',
+      :allowNewPlacementsAutoLinking => false,
+      :width => 237,
+      :flashBannerLink => '',
+      :imageBannerLink => "http://beachgrooves.com/wp-content/uploads/2014/07/BeachGrooves-Logos-website2.png",
+      :url => "http://www.example.com",
+      :height => 100,
+      :name => "banner #{timestamp}",
+      :bannerType => Epom::BannerType::EXTERNAL_FILE,
+      :adUnitId => 10,
+      :active => true,
+      :placementType => Epom::PlacementType::SITE_PLACEMENT,
+      :adUnitWidth => 237,
+      :adUnitHeight => 100
     }
-    begin
-      response = Epom::Banner.get_banner_ad_unit_values(params)
-      assert_instance_of Array, response
-      if response.count > 0
-        first = response.first
-        assert_instance_of Fixnum, first['id']
-        assert_instance_of Fixnum, first['height']
-        assert_instance_of Fixnum, first['width']
-        assert_instance_of String, first['name']
-      end
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+
+  	response = Epom::Banner.create_banner(params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert_instance_of Fixnum, response['campaignId']
+    assert ENV['campaign_id'], response['campaignId']
   end
 
-  
+  test "get_banner_ad_unit_values" do
+    # timestamp = Time.now.to_i * 1000
+    # params = {
+    #   :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+    #   :timestamp => timestamp, 
+    #   :username => ENV['username'],
+    #   :placementType => Epom::PlacementType::SITE_PLACEMENT
+    # }
+
+    # response = Epom::Banner.get_banner_ad_unit_values(params)
+    # assert_instance_of Array, response
+    # if response.count > 0
+    #   first = response.first
+    #   assert_instance_of Fixnum, first['id']
+    #   assert_instance_of Fixnum, first['height']
+    #   assert_instance_of Fixnum, first['width']
+    #   assert_instance_of String, first['name']
+    # end
+  end  
+
+  test "get_banner_pricing" do
+    # timestamp = Time.now.to_i * 1000
+    # params = {
+    #   :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+    #   :timestamp => timestamp, 
+    #   :username => ENV['username'],
+    #   :bannerId => ENV['banner_id']
+    # }
+
+    # response = Epom::Banner.get_banner_pricing(params)
+    # assert_instance_of Hash, response
+    # assert_instance_of Fixnum, response['id']
+    # assert_instance_of String, response['paymentModel']
+  end
+
+  test "get_placements_for_banner" do
+    # timestamp = Time.now.to_i * 1000
+    # params = {
+    #   :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+    #   :timestamp => timestamp, 
+    #   :username => ENV['username'],
+    #   :bannerId => ENV['banner_id']
+    # }
+
+    # response = Epom::Banner.get_placements_for_banner(params)
+    # assert_instance_of Array, response
+    # if response.count > 0
+    #   first = response[0]
+    #   assert_instance_of Hash, first
+    #   assert_instance_of Fixnum, first['id']
+    #   assert_instance_of String, first['name']
+    # end
+  end
+
+  test "get_targetings" do
+    # timestamp = Time.now.to_i * 1000
+    # params = {
+    #   :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+    #   :timestamp => timestamp, 
+    #   :username => ENV['username'],
+    #   :bannerId => ENV['banner_id']
+    # }
+
+    # response = Epom::Banner.get_targetings(params)
+    # assert_instance_of Array, response
+    # if response.count > 0
+    #   first = response[0]
+    #   assert_instance_of Hash, first
+    #   assert_instance_of Fixnum, first['id']
+    #   assert_instance_of String, first['rule']
+    #   assert_instance_of String, first['type']
+    # end
+  end
+
+  test "get_advertising_categories" do
+    # timestamp = Time.now.to_i * 1000
+    # params = {
+    #   :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+    #   :timestamp => timestamp, 
+    #   :username => ENV['username'],
+    # }
+
+    # response = Epom::Banner.get_advertising_categories(params)
+    # assert_instance_of Array, response
+    # if response.count > 0
+    #   first = response[0]
+    #   assert_instance_of Hash, first
+    #   assert_instance_of Fixnum, first['id']
+    #   assert_instance_of String, first['name']
+    # end
+  end
+
+  test "get_banner" do
+    # timestamp = Time.now.to_i * 1000
+    # params = {
+    #   :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+    #   :timestamp => timestamp, 
+    #   :username => ENV['username'],
+    #   :bannerId => ENV['banner_id']
+    # }
+
+    # response = Epom::Banner.get_banner(params)
+    # assert_instance_of Hash, response
+    # assert_instance_of Fixnum, response['campaignId']
+    # assert_instance_of String, response['url']
+    # assert_instance_of String, response['name']
+    # assert_instance_of String, response['bannerType']
+    # assert_instance_of Fixnum, response['adUnitId']
+    # assert_instance_of String, response['placementType']
+  end
 end
