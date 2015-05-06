@@ -30,7 +30,7 @@ class SiteTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :siteId => 721
+      :siteId => ENV['site_id']
     }
 
     response = Epom::Site.get_site_cpm_threshold_summary(params)
@@ -48,7 +48,7 @@ class SiteTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :siteId => 721
+      :siteId => ENV['site_id']
     }
 
     response = Epom::Site.get_site_pricing(params)
@@ -64,8 +64,10 @@ class SiteTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :siteId => 721,
-      :paymentModel => '{"paymentModel":"FIXED_PRICE","pricingType":"CPM","price":1.0,"countryPricing":[{"US":2.0},{"UK":2.0},{"UA":2.0}]}',
+      :siteId => ENV['site_id'],
+      :paymentModel => "{\"paymentModel\":\"FIXED_PRICE\",\"price\":0.0,\"pricingType\":\"CPM\"}"
+      # :price => 1,
+      # :pricingType => 'CPM'
     }
 
     response = Epom::Site.set_site_pricing(params)
@@ -77,7 +79,7 @@ class SiteTest < ActiveSupport::TestCase
       :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
       :username => ENV['username'],
-      :placementId => 1384,
+      :placementId => ENV['placement_id'],
       :paymentModel => ''
     }
 
