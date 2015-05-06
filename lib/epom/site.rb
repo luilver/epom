@@ -5,12 +5,12 @@ module Epom
     def self.extended_parameters
       {
           :delete_site => {
-              :url => '/sites/SITE_ID/delete.do',
+              :url => '/rest-api/sites/SITE_ID/delete.do',
               :parameters => [:siteId, :hash, :timestamp, :username ],
               :method => :post
           },
           :delete_site_cpm_threshold => {
-              :url => '/sites/SITE_ID/cpm-thresholds/delete.do',
+              :url => '/rest-api/sites/SITE_ID/cpm-thresholds/delete.do',
               :parameters => [:siteId, :hash, :timestamp, :username ],
               :method => :post
           },
@@ -30,7 +30,7 @@ module Epom
               :method => :get
           },
           :get_sites_zones => {
-              :url => '/sites/SITE_ID/zones.do',
+              :url => '/rest-api/sites/SITE_ID/zones.do',
               :parameters => [:siteId, :hash, :timestamp, :username ],
               :method => :get
           },
@@ -40,8 +40,8 @@ module Epom
               :method => :post
           },
           :set_site_pricing => {
-              :url => '/sites/SITE_ID/pricing.do',
-              :parameters => [:siteId, :paymentModel, :hash, :timestamp, :username ],
+              :url => '/rest-api/sites/SITE_ID/pricing.do',
+              :parameters => [:siteId, :paymentModel, :hash, :timestamp, :username, :revenueShare, :pricingType, :price ],
               :method => :post
           },
           :set_placement_pricing => {
@@ -50,8 +50,13 @@ module Epom
               :method => :post
           },
           :update_site => {
-              :url => '/sites/update.do',
-              :parameters => [:createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
+              :url => '/rest-api/sites/update.do',
+              :parameters => [:id, :createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :categoryId, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
+              :method => :post
+          },
+          :create_site => {
+              :url => '/rest-api/sites/update.do',
+              :parameters => [:createDefaultZone, :name, :url, :description, :email, :allowPlacementBannersLinkingChange, :categoryId, :revenueShare, :impressionsByMonth, :visitorsByMonth, :hash, :timestamp, :username ],
               :method => :post
           },
       }

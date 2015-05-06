@@ -9,62 +9,99 @@ class SiteTest < ActiveSupport::TestCase
   test "get_sites" do
   	timestamp = Time.now.to_i * 1000
     params = {
-  		:hash => Epom.create_hash(Epom.create_hash(ENV['epom_username']), timestamp),
+  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
-  		:username => ENV['epom_password'],
+  		:username => ENV['username'],
     }
-  	begin
-    	response = Epom::Site.get_sites(params)
-      assert_instance_of Array, response
-      if response.count > 0
-        first = response.first
-        assert_instance_of Hash, first
-        assert_instance_of Fixnum, first['id']
-        assert_instance_of String, first['name']
-      end
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+
+  	response = Epom::Site.get_sites(params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response.first
+      assert_instance_of Hash, first
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of String, first['name']
+    end
   end
 
   test "get_site_cpm_threshold_summary" do
     timestamp = Time.now.to_i * 1000
     params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['epom_username']), timestamp),
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
-      :username => ENV['epom_password'],
-      :siteId => 721
+      :username => ENV['username'],
+      :siteId => ENV['site_id']
     }
-    begin
-      response = Epom::Site.get_site_cpm_threshold_summary(params)
-      assert_instance_of Array, response
-      if response.count > 0
-        first = response.first
-        assert_instance_of Hash, first
-        assert_instance_of Float, first['cpmThreshold']
-      end
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+
+    response = Epom::Site.get_site_cpm_threshold_summary(params)
+    assert_instance_of Array, response
+    if response.count > 0
+      first = response.first
+      assert_instance_of Hash, first
+      assert_instance_of Float, first['cpmThreshold']
+    end
   end
 
   test "get_site_pricing" do
     timestamp = Time.now.to_i * 1000
     params = {
-      :hash => Epom.create_hash(Epom.create_hash(ENV['epom_username']), timestamp),
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
-      :username => ENV['epom_password'],
-      :siteId => 721
+      :username => ENV['username'],
+      :siteId => ENV['site_id']
     }
-    begin
-      response = Epom::Site.get_site_pricing(params)
-      assert_instance_of Hash, response
-      assert_instance_of String, response['paymentModel']
-      assert_instance_of Float, response['price']
-      assert_instance_of String, response['pricingType']
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+
+    response = Epom::Site.get_site_pricing(params)
+    assert_instance_of Hash, response
+    assert_instance_of String, response['paymentModel']
+    assert_instance_of Float, response['price']
+    assert_instance_of String, response['pricingType']
+  end
+
+  test "set_site_pricing" do
+    timestamp = Time.now.to_i * 1000
+    params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :siteId => ENV['site_id'],
+      :paymentModel => "{\"paymentModel\":\"FIXED_PRICE\",\"price\":0.0,\"pricingType\":\"CPM\"}"
+      # :price => 1,
+      # :pricingType => 'CPM'
+    }
+
+    response = Epom::Site.set_site_pricing(params)
+  end
+
+  test "set_placement_pricing" do
+    timestamp = Time.now.to_i * 1000
+    params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :placementId => ENV['placement_id'],
+      :paymentModel => ''
+    }
+
+    response = Epom::Site.set_placement_pricing(params)
+  end
+
+  test "create_site" do
+    timestamp = Time.now.to_i * 1000
+    params = {
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
+      :timestamp => timestamp, 
+      :username => ENV['username'],
+      :name => "publisher_#{timestamp}",
+      :url => 'http://www.publisher.com',
+      :email => "publisher@example.com",
+      :categoryId => 2
+    }
+
+    response = Epom::Site.create_site(params)
+    assert_instance_of Hash, response
+    assert_instance_of Fixnum, response['id']
+    assert response['success']
   end
 
 end

@@ -7,78 +7,71 @@ class AdvertiserTest < ActiveSupport::TestCase
   end
 
   test "delete_advertiser" do
+    advertiser_id = test_create_advertiser()
+
   	timestamp = Time.now.to_i * 1000
     params = {
-  		:advertiserId => 679, 
-  		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
+  		:advertiserId => advertiser_id, 
+  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'kewelta'}
-  	begin
-    	response = Epom::Advertiser.delete_advertiser(params)
-      assert_instance_of Hash, response
-      assert response['success']
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+  		:username => ENV['username']}
+
+  	response = Epom::Advertiser.delete_advertiser(params)
+    assert_instance_of Hash, response
+    assert response['success']
   end
 
   test "get_advertiser_permissions_for_user" do
     timestamp = Time.now.to_i * 1000
   	params = {
-  		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
+  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'kewelta'}
-  	begin
-    	response = Epom::Advertiser.get_advertiser_permissions_for_user(params)
-      assert_instance_of Array, response
-      if response.count > 0
-      	first = response[0]
-      	assert_instance_of Hash, first
-      	assert_includes first.keys, 'id'
-      	assert_includes first.keys, 'name'
-      end
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+  		:username => ENV['username']}
+
+  	response = Epom::Advertiser.get_advertiser_permissions_for_user(params)
+    assert_instance_of Array, response
+    if response.count > 0
+    	first = response[0]
+    	assert_instance_of Hash, first
+      assert_instance_of Fixnum, first['id']
+      assert_instance_of String, first['name']
+      assert_instance_of String, first['shareType']
+    end
   end
 
   test "get_campaigns_for_advertiser" do
     timestamp = Time.now.to_i * 1000
   	params = {
-  		:advertiserId => 680, 
-  		:hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
+  		:advertiserId => ENV['advertiser_id'], 
+  		:hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
   		:timestamp => timestamp, 
-  		:username => 'kewelta'}
-  	begin
-    	response = Epom::Advertiser.get_campaigns_for_advertiser(params)
-      assert_instance_of Array, response
-      if response.count > 0
-      	first = response[0]
-      	assert_instance_of Hash, first
-      	assert_includes first.keys, 'id'
-      	assert_includes first.keys, 'name'
-      end
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+  		:username => ENV['username']}
+
+  	response = Epom::Advertiser.get_campaigns_for_advertiser(params)
+    assert_instance_of Array, response
+    if response.count > 0
+    	first = response[0]
+    	assert_instance_of Hash, first
+    	assert_instance_of Fixnum, first['id']
+      assert_instance_of String, first['name']
+    end
   end
 
   test "create advertiser" do
     timestamp = Time.now.to_i * 1000
     params = {
-      :hash => Epom.create_hash(Epom.create_hash('kewelta'), timestamp),
+      :hash => Epom.create_hash(Epom.create_hash(ENV['password']), timestamp),
       :timestamp => timestamp, 
-      :username => 'kewelta',
-      :name => "pachanga #{timestamp}",
-      :contactName => "pachanga contactName",
-      :contactEmail => "pachasnga@gmail.com",
-      :description => "pachanga description"}
-    begin
-      response = Epom::Advertiser.create_advertiser(params)
-      assert_instance_of Hash, response
-      assert response['success']
-    rescue SocketError => e
-      assert_equal "getaddrinfo: Name or service not known", e.message
-    end 
+      :username => ENV['username'],
+      :name => "advertiser #{timestamp}",
+      :contactName => "advertiser contactName",
+      :contactEmail => "advertiser@gmail.com",
+      :description => "advertiser description"}
+
+    response = Epom::Advertiser.create_advertiser(params)
+    assert_instance_of Hash, response
+    assert response['success']
+    assert_instance_of Fixnum, response['id']
+    response['id']
   end
 end
